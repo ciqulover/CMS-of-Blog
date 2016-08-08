@@ -1,18 +1,19 @@
-# vuecli2
 
-> A Vue.js project
+> A Blog CMS Powered By Vue.js
 
-## Build Setup
+# Not Completed
 
-``` bash
-# install dependencies
-npm install
+## Features
+### Front-End
+* Vue.js
+* Vuex, Vue-router, Vue-validator, Vue-resource
 
-# serve with hot reload at localhost:8080
-npm run dev
+### Back-End
+* Node.js
+* MongodDB
+* Express
 
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Tools
+* webpack
+* sass
+* ECMAScript2015
