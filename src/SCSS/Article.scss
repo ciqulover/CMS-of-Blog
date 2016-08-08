@@ -1,0 +1,22 @@
+@import "variables";
+
+body{
+  //background: $baseColor4;
+}
+section.article{
+  font-family: $fontArial;
+  color: $baseColor1;
+  width: 66%;
+  min-width: 600px;
+  max-width: 960px;
+  margin: 100px auto;
+
+  .title{
+    text-align: center;
+    font-size: 40px;
+    margin: 40px;
+  }
+  article{
+    @import "markdown";
+  }
+}

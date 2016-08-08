@@ -1,0 +1,11 @@
+@import "variables";
+@import "mixins";
+
+section.articleList{
+  background-color: white;
+  position: absolute;
+  left: 200px;
+  top:$headerHeight;
+  bottom: 0;
+  width: calc(100% - 200px);
+}

@@ -1,0 +1,79 @@
+@import "variables";
+@import "mixins";
+
+@mixin editStyle(){
+  margin: 0 50px;
+  height: calc(100% - 150px);
+  width: calc(100% - 100px);
+  textarea,button,article{
+    box-sizing: border-box;
+    height: 90%;
+    float: left;
+    transition: width 0.6s;
+    background-color: $baseColor1;
+
+  }
+  textarea{
+    border: none;
+    outline: none;
+  }
+  button{
+    @include defaultButton($baseColor1,$baseColor3);
+    margin: 0 10px;
+    width: 20px;
+    padding: 0;
+    text-align: center;
+    border:none;
+  }
+
+}
+
+section.editor{
+  background-color: white;
+  position: absolute;
+  left: 200px;
+  top:$headerHeight;
+  bottom: 0;
+  width: calc(100% - 200px);
+  textarea{
+    resize: none;
+  }
+  .title{
+    @include defaultInput(400px,60px);
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    margin: 20px auto;
+    border-bottom: 2px solid $baseColor4;
+  }
+
+  .edit{
+    @include editStyle();
+    textarea{
+      width: calc(100% - 40px);
+    }
+    article{
+      width: 0;
+      overflow: hidden;
+    }
+  }
+  .inspect{
+    @include editStyle();
+    textarea{
+      width: calc(50% - 20px);
+    }
+    article{
+      width: calc(50% - 20px);
+      overflow:auto;
+    }
+  }
+  .panel{
+    margin: 0 50px;
+    position: relative;
+    button.save{
+      @include defaultButton();
+      position: absolute;
+      right: 0;
+    }
+  }
+}
