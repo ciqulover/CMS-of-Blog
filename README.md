@@ -1,7 +1,9 @@
 
 > A Blog CMS Powered By Vue.js
 
-# Not Completed
+# Not completed Yet
+
+# [demo](http://115.28.90.175:90/)
 
 ## Features
 ### Front-End
