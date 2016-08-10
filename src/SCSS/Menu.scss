@@ -1,0 +1,75 @@
+@import "variables";
+@import "mixins";
+
+section.menu{
+  background-color: transparent;
+  color:$baseColor1;
+  position: absolute;
+  left: 200px;
+  top:$headerHeight;
+  bottom: 0;
+  width: calc(100% - 200px);
+  min-width: 500px;
+  .title{
+    width:400px;
+    height: 60px;
+    text-align: center;
+    font-size: 40px;
+    margin: 20px auto;
+  }
+  table {
+    font-family: $fontHelvetica;
+    width: 80%;
+    max-width: 700px;
+    position: absolute;
+    top: calc(100px + 5%);
+    left: 50%;
+    transform: translate(-50%, 0);
+    tr {
+      height: 60px;
+      th {
+        &:first-of-type {
+          width: 140px;
+        }
+        &:nth-of-type(2) {
+          width:60%;
+          min-width: 200px;
+        }
+      }
+      td {
+        text-align: center;
+        input{
+          @include defaultInput(300px,30px);
+          border:1px solid $baseColor1;
+        }
+        &:first-of-type{
+          input{
+            width:100px;
+          }
+          i{
+            cursor: pointer;
+            &:after{
+              content: '';
+              width: 10px;
+              display: inline-block;
+            }
+          }
+        }
+      }
+
+    }
+  }
+  .panel{
+    margin: 0 50px;
+    position: relative;
+    height: 30px;
+    button{
+      @include defaultButton();
+      position: absolute;
+      right: 0;
+      height: 30px;
+      width: 60px;
+      border: 1px solid $baseColor1;
+    }
+  }
+}

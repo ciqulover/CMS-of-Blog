@@ -1,0 +1,32 @@
+@import "variables";
+
+section.archive{
+  font-family: $fontArial;
+  color: $baseColor1;
+  width: 80%;
+  min-width: 600px;
+  max-width: 960px;
+  margin: 100px auto;
+  background-color: rgba(10,10,10,0.5);
+  padding: 60px;
+  ul{
+    cursor: default;
+    li{
+      list-style: none;
+      p{
+        font-size: 24px;
+      }
+      span{
+        display: inline-block;
+        font-size: 16px;
+        height: 30px;
+        line-height: 16px;
+        width:200px;
+        &:first-of-type{
+          margin-right: 60px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,10 @@
-export const incrementCounter=function ({dispatch,state}) {
-    dispatch('INCREMENT',1)
-}
-export const toggle=function (store) {
-    console.log(store)
+function toggle(store) {
     store.dispatch('TOGGLE')
+}
+function setUser({dispatch},userName){
+    dispatch('SETUSER',userName)
+}
+
+export {
+    toggle,setUser
 }

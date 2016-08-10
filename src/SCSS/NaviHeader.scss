@@ -3,21 +3,19 @@
 
 header {
   height: $headerHeight;
-  background-color: $baseColor3;
+  background-color: rgba(10,10,10,0.5);
   font-family: $fontYaHei;
   position: relative;
   z-index: 10;
   .home {
-    @include defaultButton($baseColor3,darken($baseColor3,5%));
-    color:$baseColor1;
+    @include defaultButton(transparent, $baseColor1);
+    border: none;
+    outline: none;
+    width: 200px;
     height: $headerHeight;
-    line-height: $headerHeight;
-    width: 140px;
-    margin: 0 0 0 100px;
-    font-size: 24px;
     &:hover{
-      color:$baseColor1;
-    };
+      color:darken($baseColor1,20%);
+    }
   }
   .user {
     height: $headerHeight;
@@ -31,8 +29,12 @@ header {
       cursor: default;
     }
     button {
-      @include defaultButton();
-      height: $headerHeight * 2 / 3;
+      @include defaultButton(transparent, $baseColor1);
+      width: 100px;
+      height:$headerHeight;
+      span{
+        cursor: pointer;
+      }
     }
   }
 }

@@ -1,16 +1,13 @@
 @import "variables";
 
-body{
-  //background: $baseColor4;
-}
 section.article{
   font-family: $fontArial;
   color: $baseColor1;
-  width: 66%;
-  min-width: 600px;
+  width: 70%;
+  min-width: 400px;
   max-width: 960px;
-  margin: 100px auto;
-
+  margin: 40px auto;
+  //background-color: rgba(10,10,10,0.5);
   .title{
     text-align: center;
     font-size: 40px;

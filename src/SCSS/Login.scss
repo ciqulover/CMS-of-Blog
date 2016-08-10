@@ -34,7 +34,6 @@ section.login {
       button {
         @include defaultButton(transparent, $baseColor1);
         border:1px solid $baseColor1;
-        border-radius: 6px;
         width: 100px;
         height: 34px;
         &:hover{
@@ -51,7 +50,7 @@ section.login {
         text-align: right;
         margin-right: 80px;
         font-size: 12px;
-        .register{
+        .demo{
           color: darken($baseColor1,10%);
           cursor: pointer;
         }

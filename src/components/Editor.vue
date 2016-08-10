@@ -9,9 +9,11 @@
             <button class="toggle"
                     @click="editToggle">
                 <i class="fa fa-chevron-right fa-fw"
-                   v-show="view==='edit'"></i>
+                   v-show="view==='edit'">
+                </i>
                 <i class="fa fa-chevron-left fa-fw"
-                   v-show="view==='inspect'"></i>
+                   v-show="view==='inspect'">
+                </i>
             </button>
             <article v-html="input | marked">
             </article>
@@ -30,14 +32,15 @@
 </template>
 <script>
     import marked from '../js/marked.min.js'
-
+    import {userName} from '../vuex/getters'
     export default{
         data(){
             return {
                 title: '',
                 input: '',
                 date: '',
-                view: 'edit',
+                id:'',
+                view: 'edit'
             }
         },
         filters: {
@@ -52,26 +55,31 @@
                             this.input = body.content
                             this.title = body.title
                             this.date = body.date
+                            this.id=body._id
                         }, (response)=> {
                             console.log('Connection Failed')
                         })
             } else {
-
+                this.date=new Date()
             }
         },
         methods: {
             send(){
+                if(this.userName==='游客'){
+                    alert('游客无此权限')
+                    return
+                }
                 this.title = this.title.trim()
                 if (!this.title) {
                     alert('请输入标题')
                     return
                 }
-                if (!this.date.trim()) {
+                if (!this.dateStr.trim()) {
                     this.date = new Date()
                 }
                 this.$http.post('/save', this.$data)
                         .then((response)=> {
-                            console.log(response.status)
+                            this.$router.go('/console/articleList')
                         }, (response)=> {
                             console.log('error')
                         })
@@ -79,27 +87,33 @@
             editToggle(){
                 this.view = this.view === 'edit' ? 'inspect' : 'edit'
             }
-        }
-        , computed: {
+        },
+        computed: {
             dateStr: {
                 set(value){
                     value=value.trim()
                     if(value){
                         this.date = new Date(value)
                     }else {
-
+                        this.date=''
                     }
-
                 },
 
                 get(){
                     let d = new Date(this.date)
-                    return d.toLocaleDateString() + ' '
-                            + d.getHours() + ':'
-                            + d.getMinutes() + ':'
-                            + d.getSeconds()
+                    if(d!='Invalid Date'){
+                        return d.toLocaleDateString() + ' '
+                                + d.getHours() + ':'
+                                + d.getMinutes() + ':'
+                                + d.getSeconds()
+                    }else return ''
                 }
             }
+        },
+        vuex: {
+            getters: {
+                userName,
+            },
         }
     }
 </script>

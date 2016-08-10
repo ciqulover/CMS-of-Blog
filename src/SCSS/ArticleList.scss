@@ -1,11 +1,64 @@
 @import "variables";
 @import "mixins";
 
-section.articleList{
-  background-color: white;
+section.articleList {
+  color: $baseColor1;
   position: absolute;
   left: 200px;
-  top:$headerHeight;
+  top: $headerHeight;
   bottom: 0;
   width: calc(100% - 200px);
+  overflow-y: scroll;
+  button{
+    position: relative;
+    width:200px;
+    height:60px;
+    left:50%;
+    transform: translate(-50%, 0);
+    border:none;
+    outline: none;
+    margin: 30px 0 ;
+    background-color: transparent;
+    font-size: 20px;
+    border-bottom: 2px solid $baseColor1;
+    border-top: 2px solid $baseColor1;
+  }
+  table {
+    font-family: $fontHelvetica;
+    width: 60%;
+    position: absolute;
+    top: calc(100px + 5%);
+    left: 50%;
+    transform: translate(-50%, 0);
+    tr {
+      height: 60px;
+      th {
+        &:first-of-type {
+          width: 40%;
+        }
+        &:nth-of-type(2) {
+          width: 30%;
+          min-width: 200px;
+        }
+        &:last-of-type{
+          width: 30%;
+          min-width: 100px;
+        }
+      }
+      td:first-of-type{
+        cursor: pointer;
+      }
+      td:nth-of-type(2), td:nth-of-type(3) {
+        text-align: center;
+      }
+      td i{
+        cursor: pointer;
+      }
+      td i:after{
+        display: inline-block;
+        width: 10px;
+        content: '';
+      }
+    }
+  }
 }

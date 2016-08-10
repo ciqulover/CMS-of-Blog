@@ -1,24 +1,23 @@
 
 $tableWidth: 20px 28% 8% 13% 13% 320px;
 
-@mixin defaultButton($bgColor1:$baseColor3,$bgColor2:$baseColor1) {
+@mixin defaultButton($bgColor1:transparent,$bgColor2:$baseColor1) {
   background-color: $bgColor1;
   color: $bgColor2;
-  border: 1px solid $bgColor1;
   text-align: center;
   transition: 0.5s all;
-  border-radius: 2px;
+  border: none;
   outline: none;
   &:hover {
-    background-color: $bgColor2;
-    color: $bgColor1;
-    border: 1px solid $bgColor2;
+
   }
 }
 
 @mixin defaultInput($width:16px,$height:16px) {
+  color: $baseColor1;
   width: $width;
   height: $height;
+  background-color: transparent;
   padding: 0 10px;
   border: none;
   outline: none;

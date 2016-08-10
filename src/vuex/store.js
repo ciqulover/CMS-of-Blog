@@ -4,17 +4,15 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state={
-    count:0,
-    waiting:''
+    waiting:'',
+    userName:'',
 }
 const mutations={
-    INCREMENT(state,amount){
-        state.count+=amount
-    },
-    TOGGLE:(state)=>state.waiting=state.waiting===''? 'waiting':''
+
+    TOGGLE:(state)=>state.waiting=state.waiting===''? 'waiting':'',
+    SETUSER:(state,userName)=>state.userName=userName,
 
 }
-
 export default new Vuex.Store({
     state,
     mutations

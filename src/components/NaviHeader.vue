@@ -1,27 +1,50 @@
 <template>
     <header>
         <button class="home" @click="toHome">
-            <i class="icon-home"></i>
-            <span>Home</span>
+            <i class="fa fa-fire fa-2x"></i>
         </button>
         <div class="user">
-            <span>
-            <i class="icon-user"></i>
-            </span>
+            <span>{{time}}好，{{userName}}</span>
             <button @click="logOut">
-                <i class="icon-signout"></i>Logout
+                <span>登出</span>
+                <i class="fa fa-sign-out"></i>
             </button>
         </div>
     </header>
 </template>
 <script>
+    import {setUser} from '../vuex/actions'
+    import {userName} from '../vuex/getters'
+    import {unset} from '../js/cookieUtil'
     export default{
-         methods: {
-            toHome: function () {
-                console.log('a')
+        methods: {
+            toHome() {
+                this.$router.go('/console')
+            },
+            logOut() {
+                unset('user','/',location.hostname)
+                this.setUser('')
+                this.$router.go('/login')
             }
-            , logOut: function () {
-                console.log('b')
+        },
+        vuex:{
+            getters:{
+                userName
+            },
+            actions:{
+                setUser
+            }
+        }
+        ,computed:{
+            time(){
+                let hours=new Date().getHours()
+                if(hours>5 && hours<12){
+                    return '早上'
+                }else if(hours>11&& hours<19){
+                    return '下午'
+                }else {
+                    return '晚上'
+                }
             }
         }
     }

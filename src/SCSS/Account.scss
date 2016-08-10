@@ -1,0 +1,18 @@
+@import "variables";
+
+section.account{
+  background-color: transparent;
+  color:$baseColor1;
+  position: absolute;
+  left: 200px;
+  top:$headerHeight;
+  bottom: 0;
+  width: calc(100% - 200px);
+  .title{
+    width:400px;
+    height: 60px;
+    text-align: center;
+    font-size: 40px;
+    margin: 20px auto;
+  }
+}

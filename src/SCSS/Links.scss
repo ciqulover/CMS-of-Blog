@@ -1,0 +1,47 @@
+@import "variables";
+
+header.links{
+  position: relative;
+  font-family: $fontArial;
+  color: $baseColor1;
+  width: 40%;
+  height: 80px;
+  min-width: 400px;
+  max-width: 600px;
+  margin: 100px auto;
+  background-color: transparent;
+  padding: 10px;
+  box-sizing: border-box;
+  .circle{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: inline-block;
+    img{
+      width:60px;
+      height: 60px;
+    }
+  }
+  ul{
+    margin: 0;
+    display: inline-block;
+    position: absolute;
+    right:0;
+    li{
+      font-family: $fontYaHei;
+      font-weight: 200;
+      list-style: none;
+      display: block;
+      float: left;
+      margin: 0 20px;
+      cursor: pointer;
+      height: 60px;
+      line-height: 60px;
+      a{
+        text-decoration: none;
+        color:$baseColor1;
+      }
+    }
+  }
+}

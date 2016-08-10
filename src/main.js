@@ -15,6 +15,10 @@ import Article from  './components/Article.vue'
 import Editor from './components/Editor.vue'
 import Console from './components/Console.vue'
 import ArticleList from './components/ArticleList.vue'
+import Archive from './components/Archive.vue'
+import Menu from './components/Menu.vue'
+import Account from './components/Account.vue'
+import Theme from './components/Theme.vue'
 
 import store from './vuex/store'
 
@@ -22,7 +26,10 @@ let router = new VueRouter()
 
 router.map({
     '/': {
-        component: Login
+        component: Archive
+    },
+    'login':{
+        component:Login
     },
     '/article':{
         component:Article
@@ -40,11 +47,19 @@ router.map({
             },
             '/articleList':{
                 component:ArticleList
+            },
+            '/menu':{
+                component:Menu
+            },
+            'account':{
+                component:Account
+            },
+            'theme':{
+                component:Theme
             }
-        }
-    }
 
-
+        },
+    },
 })
 let App = Vue.extend({
     data(){
@@ -61,9 +76,7 @@ let App = Vue.extend({
     },
     store,
     ready(){
-
     }
 })
 
 router.start(App, 'body')
-

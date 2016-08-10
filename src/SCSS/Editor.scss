@@ -10,26 +10,31 @@
     height: 90%;
     float: left;
     transition: width 0.6s;
-    background-color: $baseColor1;
-
+    background-color: transparent;
   }
   textarea{
+    padding: 20px;
     border: none;
     outline: none;
+    background-color: rgba(10,10,10,0.6);
   }
   button{
-    @include defaultButton($baseColor1,$baseColor3);
+    @include defaultButton(transparent,$baseColor1);
     margin: 0 10px;
     width: 20px;
     padding: 0;
     text-align: center;
-    border:none;
+    border: 1px solid $baseColor1;
+  }
+  article{
+    background-color: rgba(10,10,10,0.6);
   }
 
 }
 
 section.editor{
-  background-color: white;
+  background-color: transparent;
+  color:$baseColor1;
   position: absolute;
   left: 200px;
   top:$headerHeight;
@@ -44,7 +49,7 @@ section.editor{
     text-align: center;
     font-size: 40px;
     margin: 20px auto;
-    border-bottom: 2px solid $baseColor4;
+    border-bottom: 2px solid $baseColor1;
   }
 
   .edit{
@@ -70,10 +75,19 @@ section.editor{
   .panel{
     margin: 0 50px;
     position: relative;
+    height: 30px;
+    input{
+      @include defaultInput(160px,30px);
+      border-bottom: 2px solid $baseColor1;
+      text-align: center;
+    }
     button.save{
       @include defaultButton();
       position: absolute;
       right: 0;
+      height: 30px;
+      width: 60px;
+      border: 1px solid $baseColor1;
     }
   }
 }

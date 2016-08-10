@@ -47,9 +47,9 @@
                     <button @click="login">登陆</button>
                 </p>
                 <p>
-                    <span>没有账户？点击</span>
-                    <span class="register">这里</span>
-                    <span>注册</span>
+                    <span>不是站长?以</span>
+                    <span class="demo" @click="demo">游客</span>
+                    <span>身份登陆（用于演示）</span>
                 </p>
             </div>
         </validator>
@@ -57,7 +57,8 @@
 </template>
 <script>
     import Background from './Background.vue'
-    import {toggle} from '../vuex/actions'
+    import {toggle, setUser} from '../vuex/actions'
+    import {get, set} from '../js/cookieUtil'
     export default{
         data(){
             return {
@@ -73,30 +74,64 @@
                 }
             }
         },
+        created(){
+            let userName=get('user')
+            console.log(userName)
+            if(userName){
+                this.setUser(userName)
+                this.$router.go('/console')
+            }
+        },
         ready(){
         },
         components: {Background},
         methods: {
             login(){
+                this.userName = this.userName.trim()
                 this.$validate(true, ()=> {
                     if (this.$loginValidator.valid) {
                         this.toggle()
                         this.$http.post('/login', this.$data)
                             .then((response)=> {
                                 this.toggle()
-                                console.log(response.body)
                                 let body = JSON.parse(response.body)
                                 this.info = body.state
+                                if (body.state === '登陆成功') {
+                                    this.setUser(this.userName)
+                                    let date = new Date(Date.now() + 60000 * 30)
+                                    let hostName = location.hostname
+                                    set('user', this.userName, date, '/', hostName)
+                                    this.$router.go('/console')
+                                }
                             }, (response)=> {
                                 console.log('Connection Failed')
                             })
                     }
                 })
             },
+            demo(){
+                this.toggle()
+                this.$http.post('/login', {userName:'游客',password:'000'})
+                        .then((response)=> {
+                            this.toggle()
+                            let body = JSON.parse(response.body)
+                            this.info = body.state
+                            if (body.state === '登陆成功') {
+                                this.setUser('游客')
+                                let date = new Date(Date.now() + 60000 * 30)
+                                let hostName = location.hostname
+                                set('user', '游客', date, '/', hostName)
+                                this.$router.go('/console')
+                            }
+                        }, (response)=> {
+                            console.log('Connection Failed')
+                        })
+            }
         },
         vuex: {
             actions: {
-                toggle
+                toggle,
+                setUser,
             }
         }
     }

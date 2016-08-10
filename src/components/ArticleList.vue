@@ -1,34 +1,35 @@
 <template>
     <section class="articleList">
+        <button @click="$router.go('/console/editor')">
+            新增文章
+        </button>
         <table>
             <tbody>
                 <tr>
                     <th>标题</th>
                     <th>日期</th>
-                    <th colspan="1"></th>
+                    <th>选项</th>
                 </tr>
                 <tr v-for="article in articles">
-                    <td>{{article.title}}</td>
+                    <td @click="detail(article._id)">{{article.title}}</td>
                     <td>{{article.date | dateParse}}</td>
                     <td>
                         <i class="fa fa-pencil-square-o"
-                           @click="edit(article._id)"
+                           @click="edit(article._id)">
 
-                        ></i>
+                        </i>
                         <i class="fa fa-trash"
-                           @click="deleteItem(article._id)"
-
-                        ></i>
+                           @click="deleteItem(article._id,$index)">
+                        </i>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <button @click="$router.go('/console/editor')">新文章</button>
+
     </section>
 </template>
 <script>
-
-
+    import {userName} from '../vuex/getters'
     export default{
         data(){
             return {
@@ -40,12 +41,12 @@
                     new Date(value).toLocaleTimeString()
         },
         created(){
-            console.log(name)
+            console.log('d')
             this.$http.get('/articleList')
                     .then((response)=> {
+                        console.log(response.body)
                         let arcs = JSON.parse(response.body)
                         this.articles = arcs
-                        console.log(arcs,arcs[0]._id)
                     }, (response)=> {
                         console.log('Connection Failed')
                     })
@@ -55,9 +56,27 @@
                 console.log(id)
                 this.$router.go('editor?id='+id)
             },
-            deleteItem(id){
-                console.log(id)
+            deleteItem(id,index){
+                if(this.userName==='游客'){
+                    alert('游客无此权限')
+                    return
+                }
+                this.$http.post('/delete',{id})
+                        .then((response)=> {
+                            console.log(this.articles)
+                            this.articles.splice(index,1)
+                        }, (response)=> {
+                            console.log('Connection Failed')
+                        })
+            },
+            detail(id){
+                this.$router.go('/article?id='+id)
             }
+        },
+        vuex: {
+            getters: {
+                userName,
+            },
         }
     }
 </script>

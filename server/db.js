@@ -11,12 +11,23 @@ var articleSchema=new Schema({
     date:Date,
     content:String,
 })
+
+var linkSchema=new Schema({
+    name:String,
+    href:String,
+})
 var User=mongoose.model('User',userSchema)
 var Article=mongoose.model('Article',articleSchema)
+var Link=mongoose.model('Link',linkSchema)
 
 var ycwalker=new User({
     name:'ycwalker',
     password:'111'
+})
+
+var yc=new User({
+    name:'游客',
+    password:'000'
 })
 
 var someAcs=new Article({
@@ -26,6 +37,11 @@ var someAcs=new Article({
 
 })
 
+var github=new Link({
+    name:'Github',
+    href:'https://www.github.com'
+})
+
 
 var db = mongoose.connection
 db.on('error', function () {
@@ -33,6 +49,15 @@ db.on('error', function () {
 })
 db.once('open', function () {
     console.log('opened')
+
+    // yc.save(function (err) {
+    //     if(err)return console.log(err)
+    // })
+
+    // github.save(function (err) {
+    //     if(err)return console.log(err)
+    // })
+
     // ycwalker.save(function (err) {
     //     if(err)return console.log(err)
     // })
@@ -43,5 +68,6 @@ db.once('open', function () {
 
 module.exports={
     User:User,
-    Article:Article
+    Article:Article,
+    Link:Link
 }
