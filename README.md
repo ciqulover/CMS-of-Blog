@@ -1,8 +1,10 @@
 
 > A Blog CMS Powered By Vue.js
+
 > 一个前端基于Vue.js，后端基于Node.js的博客内容管理器
 
-### [demo](http://115.28.90.175:90/#!/)
+### [Demo](http://115.28.90.175:90/#!/)
+### 登陆地址在Demo页面最下方
 
 ## Features
 ###### 前端：Vue全家桶
