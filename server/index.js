@@ -53,9 +53,6 @@ router.post('/save', function (req, res, next) {
             content: req.body.input
         }
 
-        console.log(req.body.title,req.body.id)
-        // db.Article.findOneAndUpdate(req.body.id, obj, function () {
-        // })
         db.Article.findByIdAndUpdate(req.body.id, obj, function () {
         })
     } else {

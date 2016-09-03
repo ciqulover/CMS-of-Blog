@@ -20,21 +20,20 @@ var User=mongoose.model('User',userSchema)
 var Article=mongoose.model('Article',articleSchema)
 var Link=mongoose.model('Link',linkSchema)
 
-var ycwalker=new User({
+var admin=new User({
     name:'ycwalker',
     password:'111'
 })
 
-var yc=new User({
+var visitor=new User({
     name:'游客',
     password:'000'
 })
 
 var someAcs=new Article({
-    title:'h',
+    title:'this is sample article',
     date:new Date(),
-    content:''
-
+    content:'this is sample content'
 })
 
 var github=new Link({
@@ -50,20 +49,28 @@ db.on('error', function () {
 db.once('open', function () {
     console.log('opened')
 
-    // yc.save(function (err) {
-    //     if(err)return console.log(err)
-    // })
+    User.find(null,function (err,doc) {
+        if(err){
+            console.log(err)
+        }else {
+            if(!doc[0]){
+                visitor.save(function (err) {
+                    if(err)return console.log(err)
+                })
 
-    // github.save(function (err) {
-    //     if(err)return console.log(err)
-    // })
+                github.save(function (err) {
+                    if(err)return console.log(err)
+                })
 
-    // ycwalker.save(function (err) {
-    //     if(err)return console.log(err)
-    // })
-    // someAcs.save(function (err) {
-    //     if(err)return console.log(err)
-    // })
+                admin.save(function (err) {
+                    if(err)return console.log(err)
+                })
+                someAcs.save(function (err) {
+                    if(err)return console.log(err)
+                })
+            }
+        }
+    })
 })
 
 module.exports={
