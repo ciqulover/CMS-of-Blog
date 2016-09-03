@@ -1,54 +1,64 @@
 <template>
-    <background></background>
-    <links></links>
-    <section class="article" v-on:scroll="scroll">
-        <div class="title">{{title}}</div>
-        <div class="time">{{date}}</div>
-        <article v-html="content | marked">
-        </article>
-    </section>
+    <div class="wrap">
+        <my-header></my-header>
+        <section class="article">
+            <article class="post-block">
+                <div class="post-title">{{title}}</div>
+                <div class="post-info">{{date}}</div>
+                <div class="post-content">
+                    {{{content | marked}}}
+                </div>
+            </article>
+        </section>
+        <my-footer></my-footer>
+    </div>
 </template>
 <script>
-
-    import Background from './Background.vue'
-    import Links from './Links.vue'
-
-    import marked from '../js/marked.min.js'
+    import myHeader     from './MyHeader.vue'
+    import myFooter     from './MyFooter.vue'
+    import marked       from '../js/marked.min.js'
+    import {bgToggle}   from '../vuex/actions'
 
     export default{
         data(){
-            return{
-                title:'',
-                date:'',
-                content:''
+            return {
+                title: '',
+                date: '',
+                content: ''
             }
         },
-        filters:{
+        filters: {
             marked
         },
         created(){
-            let id=this.$route.query.id
-            this.$http.get('/article?id='+id)
-                .then((response)=> {
-                    let body = JSON.parse(response.body)
-                    this.content = body.content
-                    this.title=body.title
-                    this.date=new Date(body.date).toLocaleDateString()
-                }, (response)=> {
-                    console.log('Connection Failed')
-                })
+            let id = this.$route.query.id
+            this.$http.get('/article?id=' + id)
+                    .then((response)=> {
+                        let body = JSON.parse(response.body)
+                        this.content = body.content
+                        this.title = body.title
+                        let d = new Date(body.date)
+                        this.date = d.getFullYear() + '年' +
+                                (d.getMonth() + 1) + '月' +
+                                d.getDate() + '日'
+                    }, (response)=> {
+                        console.log(response)
+                    })
         },
         components: {
-            Background,
-            Links
+            myHeader,
+            myFooter
         },
-        methods:{
-            scroll(){
-                console.log('a')
+        ready(){
+            this.bgToggle('MyCanvas')
+        },
+        vuex:{
+            actions:{
+                bgToggle
             }
         }
     }
 </script>
 <style lang="sass">
-@import "../SCSS/Article.scss";
+    @import "../SCSS/Article.scss";
 </style>

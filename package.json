@@ -2,8 +2,8 @@
   "name": "vue-platform",
   "description": "A Vue.js project",
   "author": "ycwalker",
-  "license": "ISC",
-  "version": "0.0.1",
+  "license": "MIT",
+  "version": "0.1.0",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",

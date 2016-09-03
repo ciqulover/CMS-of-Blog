@@ -1,13 +1,8 @@
 @import "variables";
+@import "mixins";
 
 section.account{
-  background-color: transparent;
-  color:$baseColor1;
-  position: absolute;
-  left: 200px;
-  top:$headerHeight;
-  bottom: 0;
-  width: calc(100% - 200px);
+  @include rightSide();
   .title{
     width:400px;
     height: 60px;

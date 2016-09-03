@@ -36,6 +36,7 @@ router.get('/article', function (req, res, next) {
     })
 })
 router.get('/articleList', function (req, res, next) {
+
     db.Article.find(null, 'title date', function (err, doc) {
         if (err) {
             return console.log(err)
@@ -51,7 +52,11 @@ router.post('/save', function (req, res, next) {
             date: req.body.date,
             content: req.body.input
         }
-        db.Article.findOneAndUpdate(req.body.id, obj, function () {
+
+        console.log(req.body.title,req.body.id)
+        // db.Article.findOneAndUpdate(req.body.id, obj, function () {
+        // })
+        db.Article.findByIdAndUpdate(req.body.id, obj, function () {
         })
     } else {
         var newArticle = new db.Article({

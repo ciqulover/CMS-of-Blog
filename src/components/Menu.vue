@@ -9,8 +9,12 @@
             </tr>
             <tr v-for="link in links">
                 <td>
-                    <i class="fa fa-plus-circle" @click="addLink($index)"  v-if="links.length<4"></i>
-                    <i class="fa fa-minus-circle" @click="removeLink($index)"  v-if="links.length>1"></i>
+                    <i class="fa fa-plus-circle"
+                       @click="addLink($index)"
+                       v-if="links.length<4"></i>
+                    <i class="fa fa-minus-circle"
+                       @click="removeLink($index)"
+                       v-if="links.length>1"></i>
                     <input type="text" v-model="link.name">
                 </td>
                 <td>
@@ -26,50 +30,68 @@
 </template>
 
 <script>
-    import {userName} from '../vuex/getters'
-export default{
-    data(){
-        return{
-            links:null
-        }
-    },
-    created(){
-        this.$http.post('/getLinks')
-                .then((response)=> {
-                    let body = JSON.parse(response.body)
-                    this.links = body
-                }, (response)=> {
-                    console.log('Connection Failed')
-                })
-    },
-    methods:{
-        addLink(i){
-            this.links.splice(i+1,0,{name:'',href:''})
-        },
-        removeLink(i){
-            this.links.splice(i,1)
-        },
-        saveLinks(){
-            if(this.userName==='游客'){
-                alert('游客无此权限')
-                return
+    import {userName}   from '../vuex/getters'
+    import {pop}        from '../vuex/actions'
+    export default{
+        data(){
+            return {
+                links: null
             }
-            this.$http.post('/setLinks',this.$data)
+        },
+        created(){
+            this.$http.post('/getLinks')
                     .then((response)=> {
-                        let body = response.body
+                        this.links = JSON.parse(response.body)
                     }, (response)=> {
-                        console.log('Connection Failed')
+                        console.log(response)
                     })
         },
-    },
-    vuex: {
-        getters: {
-            userName,
+        methods: {
+            addLink(i){
+                this.links.splice(i + 1, 0, {
+                    name: '',
+                    href: ''
+                })
+            },
+            removeLink(i){
+                this.links.splice(i, 1)
+            },
+            saveLinks(){
+                if (this.userName === '游客') {
+                    this.pop({
+                        pop: true,
+                        content: '游客无此权限',
+                        cb1: function () {
+                            this.pop({})
+                        }.bind(this)
+                    })
+                    return
+                }
+                this.$http.post('/setLinks', this.$data)
+                        .then(()=> {
+                            this.pop({
+                                pop: true,
+                                content: '保存成功',
+                                cb1: function () {
+                                    this.pop({})
+                                }.bind(this)
+                            })
+                        }, (response)=> {
+                            console.log(response)
+                        })
+            },
         },
+        vuex: {
+            getters: {
+                userName,
+            },
+            actions: {
+                pop,
+            }
+        }
     }
-}
 </script>
 
 <style lang="sass">
-@import "../SCSS/Menu.scss";
+    @import "../SCSS/Menu.scss";
 </style>

@@ -1,8 +1,12 @@
 doctype html
-html
+html(lang="zh-CN")
   head
     title Blog-CMS
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+
   body
-    componet(:is='waiting')
+    waiting(v-if='waiting')
+    pop(v-show='pop')
+    component(:is='bg')
     router-view
     script(src='public/build.js')

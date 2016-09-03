@@ -1,0 +1,49 @@
+section.container {
+  margin: 2em 10px;
+}
+
+@media screen and (min-width: 700px) {
+  .wrap,footer {
+    width: 700px;
+    margin: 0 auto;
+  }
+  header.myHeader {
+    padding: 20px 100px;
+    margin-bottom: 60px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .wrap,footer {
+    width: 100%;
+  }
+  header.myHeader {
+    padding: 20px 0;
+    margin-bottom: 20px;;
+    div.circle,
+    ul.menu {
+      margin: 0 auto;
+      float: none;
+      display: block;
+      text-align: center;
+      padding: 0;
+      li {
+        padding: 10px 10px;
+      }
+    }
+
+  }
+  section .post-block {
+    padding: 0 30px;
+  }
+  .post-content {
+    h2, h3, h4, h5, h6 {
+      max-width: 300px;
+      left: 15px;
+    }
+  }
+  .archive .item{
+    padding-left: 20px;
+  }
+
+}

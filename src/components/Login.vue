@@ -1,8 +1,7 @@
 <template>
-    <background></background>
     <section class="login">
         <validator name="loginValidator">
-            <div class="form" @keyup.enter="login">
+            <div class="form" @keyup.enter="loginRequest">
                 <p>
                     <i class="fa fa-fire fa-2x"></i>
                 </p>
@@ -44,11 +43,13 @@
                     </label>
                 </p>
                 <p>
-                    <button @click="login">登陆</button>
+                    <button @click="loginRequest">登陆
+                    </button>
                 </p>
                 <p>
                     <span>不是站长?以</span>
-                    <span class="demo" @click="demo">游客</span>
+                    <span class="demo"
+                          @click="demo">游客</span>
                     <span>身份登陆（用于演示）</span>
                 </p>
             </div>
@@ -56,9 +57,8 @@
     </section>
 </template>
 <script>
-    import Background from './Background.vue'
-    import {toggle, setUser} from '../vuex/actions'
-    import {get, set} from '../js/cookieUtil'
+    import {toggle, setUser,bgToggle}    from '../vuex/actions'
+    import {get, set}           from '../js/cookieUtil'
     export default{
         data(){
             return {
@@ -72,59 +72,58 @@
                     minlength: 1,
                     maxlength: 16,
                 }
+
             }
         },
         created(){
-            let userName=get('user')
-            console.log(userName)
-            if(userName){
+            let userName = get('user')
+            if (userName) {
                 this.setUser(userName)
                 this.$router.go('/console')
             }
         },
         ready(){
+            this.bgToggle('Background')
         },
-        components: {Background},
         methods: {
-            login(){
+            loginRequest(){
                 this.userName = this.userName.trim()
                 this.$validate(true, ()=> {
                     if (this.$loginValidator.valid) {
                         this.toggle()
                         this.$http.post('/login', this.$data)
-                            .then((response)=> {
-                                this.toggle()
-                                let body = JSON.parse(response.body)
-                                this.info = body.state
-                                if (body.state === '登陆成功') {
-                                    this.setUser(this.userName)
-                                    let date = new Date(Date.now() + 60000 * 30)
-                                    let hostName = location.hostname
-                                    set('user', this.userName, date, '/', hostName)
-                                    this.$router.go('/console')
-                                }
-                            }, (response)=> {
-                                console.log('Connection Failed')
-                            })
+                                .then((response)=> {
+                                    this.loginResponse(response)
+                                }, (response)=> {
+                                    console.log(response)
+                                })
                     }
                 })
             },
+
+            loginResponse(response, name = this.userName){
+                this.toggle()
+                let body = JSON.parse(response.body)
+                this.info = body.state
+                if (body.state === '登陆成功') {
+                    this.userName = name
+                    this.setUser(this.userName)
+                    let date = new Date(Date.now() + 60000 * 30)
+                    let hostName = location.hostname
+                    set('user', this.userName, date, '/', hostName)
+                    this.$router.go('/console')
+                }
+            },
             demo(){
                 this.toggle()
-                this.$http.post('/login', {userName:'游客',password:'000'})
+                this.$http.post('/login', {
+                    userName: '游客',
+                    password: '000'
+                })
                         .then((response)=> {
-                            this.toggle()
-                            let body = JSON.parse(response.body)
-                            this.info = body.state
-                            if (body.state === '登陆成功') {
-                                this.setUser('游客')
-                                let date = new Date(Date.now() + 60000 * 30)
-                                let hostName = location.hostname
-                                set('user', '游客', date, '/', hostName)
-                                this.$router.go('/console')
-                            }
+                            this.loginResponse(response, '游客')
                         }, (response)=> {
-                            console.log('Connection Failed')
+                            console.log(response)
                         })
             }
         },
@@ -132,6 +131,7 @@
             actions: {
                 toggle,
                 setUser,
+                bgToggle
             }
         }
     }

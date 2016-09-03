@@ -26,20 +26,19 @@
                     @click="send">保存
             </button>
         </div>
-
-
     </section>
 </template>
 <script>
-    import marked from '../js/marked.min.js'
-    import {userName} from '../vuex/getters'
+    import marked       from '../js/marked.min.js'
+    import {userName}   from '../vuex/getters'
+    import {pop}        from '../vuex/actions'
     export default{
         data(){
             return {
                 title: '',
                 input: '',
                 date: '',
-                id:'',
+                id: '',
                 view: 'edit'
             }
         },
@@ -55,18 +54,25 @@
                             this.input = body.content
                             this.title = body.title
                             this.date = body.date
-                            this.id=body._id
+                            this.id = id
                         }, (response)=> {
-                            console.log('Connection Failed')
+                            console.log(response)
                         })
             } else {
-                this.date=new Date()
+                this.date = new Date().toLocaleDateString()
             }
         },
+
         methods: {
             send(){
-                if(this.userName==='游客'){
-                    alert('游客无此权限')
+                if (this.userName === '游客') {
+                    this.pop({
+                        pop: true,
+                        content: '游客无此权限',
+                        cb1: function () {
+                            this.pop({})
+                        }.bind(this)
+                    })
                     return
                 }
                 this.title = this.title.trim()
@@ -77,43 +83,60 @@
                 if (!this.dateStr.trim()) {
                     this.date = new Date()
                 }
+
                 this.$http.post('/save', this.$data)
-                        .then((response)=> {
-                            this.$router.go('/console/articleList')
+                        .then(()=> {
+                            this.pop({
+                                pop: true,
+                                content: '保存成功',
+                                cb1: function () {
+                                    this.pop({})
+                                    this.$router.go('/console/articleList')
+                                }.bind(this)
+                            })
                         }, (response)=> {
-                            console.log('error')
+                            console.log(response)
                         })
             },
             editToggle(){
                 this.view = this.view === 'edit' ? 'inspect' : 'edit'
-            }
+            },
         },
         computed: {
             dateStr: {
                 set(value){
-                    value=value.trim()
-                    if(value){
-                        this.date = new Date(value)
-                    }else {
-                        this.date=''
+                    value = value.trim()
+                    let reg = /(\d{4})年(\d+)月(\d+)日/
+                    if (reg.test(value)) {
+                        let date = RegExp.$1
+                                + '/' + RegExp.$2
+                                + '/' + RegExp.$3
+                        this.date = new Date(date)
+
+                    } else {
+                        this.date = new Date()
                     }
                 },
 
                 get(){
                     let d = new Date(this.date)
-                    if(d!='Invalid Date'){
-                        return d.toLocaleDateString() + ' '
-                                + d.getHours() + ':'
-                                + d.getMinutes() + ':'
-                                + d.getSeconds()
-                    }else return ''
+                    if (d != 'Invalid Date') {
+                        return d.getFullYear() + '年' +
+                                (d.getMonth() + 1) + '月' +
+                                d.getDate() + '日'
+                    } else {
+                        return '日期不合法'
+                    }
                 }
             }
         },
         vuex: {
             getters: {
-                userName,
+                userName
             },
+            actions: {
+                pop
+            }
         }
     }
 </script>

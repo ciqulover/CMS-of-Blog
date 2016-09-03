@@ -33,13 +33,7 @@
 }
 
 section.editor{
-  background-color: transparent;
-  color:$baseColor1;
-  position: absolute;
-  left: 200px;
-  top:$headerHeight;
-  bottom: 0;
-  width: calc(100% - 200px);
+  @include rightSide();
   textarea{
     resize: none;
   }

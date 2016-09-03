@@ -1,5 +1,4 @@
 <template>
-    <background></background>
     <navi-header></navi-header>
     <aside class="console">
         <div class="head">
@@ -9,45 +8,50 @@
         </div>
         <menu class="navigation">
             <ul>
+                <li @click="$router.go('/')">
+                    <i class="fa fa-star fa-fw"></i>
+                    <span>主页</span>
+                </li>
                 <li @click="$router.go('/console/articleList')">
                     <i class="fa fa-file-text fa-fw"></i>
                     <span>文章</span>
                 </li>
                 <li @click="$router.go('/console/menu')">
                     <i class="fa fa-list-ul fa-fw"></i>
-                    <span>菜单</span>
+                    <span>链接</span>
                 </li>
-                <li @click="$router.go('/console/theme')">
-                    <i class="fa fa-star fa-fw"></i>
-                    <span>主题</span>
-                </li>
-                <li @click="$router.go('/console/account')">
-                    <i class="fa fa-user fa-fw"></i>
-                    <span>账户</span>
-                </li>
+                <!--<li @click="$router.go('/console/theme')">-->
+                <!--<i class="fa fa-star fa-fw"></i>-->
+                <!--<span>主题</span>-->
+                <!--</li>-->
+                <!--<li @click="$router.go('/console/account')">-->
+                <!--<i class="fa fa-user fa-fw"></i>-->
+                <!--<span>账户</span>-->
+                <!--</li>-->
             </ul>
         </menu>
     </aside>
     <router-view></router-view>
 </template>
 <script>
-    import NaviHeader from './NaviHeader.vue'
-    import Background from './Background.vue'
-    import {toggle, setUser} from '../vuex/actions'
-    import {userName} from '../vuex/getters'
-    import {get, set, unset} from '../js/cookieUtil'
+import NaviHeader               from './NaviHeader.vue'
+    import {setUser,bgToggle}   from '../vuex/actions'
+    import {userName}           from '../vuex/getters'
+    import {get, set, unset}    from '../js/cookieUtil'
     export default{
         created(){
-            let userName=get('user')
-            if(!this.userName && !userName){
+            let userName = get('user')
+            if (!this.userName && !userName) {
                 this.$router.go('/login')
-            }else if(!this.userName){
+            } else if (!this.userName) {
                 this.setUser(userName)
             }
         },
         components: {
             NaviHeader,
-            Background
+        },
+        ready(){
+            this.bgToggle('Background')
         },
         vuex: {
             getters: {
@@ -55,6 +59,7 @@
             },
             actions: {
                 setUser,
+                bgToggle
             }
         }
     }

@@ -1,0 +1,39 @@
+@import "variables";
+
+header.myHeader{
+  font-family: $fontSourceSansPro;
+  min-height: 60px;
+  .circle{
+    float: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: inline-block;
+    img{
+      width:60px;
+      height: 60px;
+    }
+  }
+
+  ul{
+    float: right;
+    margin: 0;
+    left: 80px;
+    li{
+      list-style: none;
+      display: inline-block;
+      padding: 19px  14px ;
+      a {
+        color: #2c3e50;
+        text-decoration: none;
+      }
+
+      a:hover {
+        border-bottom: 2px solid #42b983;
+      }
+    }
+  }
+
+
+}

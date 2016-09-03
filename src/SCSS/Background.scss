@@ -14,28 +14,30 @@
   background: transparent;
   box-shadow: $shadow;
   animation: aniStar $time linear infinite;
-  //&:after{
-  //  content: " ";
-  //  position: absolute;
-  //  top: 2000px;
-  //  width: $size;
-  //  height: $size;
-  //  background: transparent;
-  //  box-shadow: $shadow;
-  //}
+  &:after{
+    content: " ";
+    position: absolute;
+    top: 2000px;
+    width: $size;
+    height: $size;
+    background: transparent;
+    box-shadow: $shadow;
+  }
 }
 
 $shadows-small:  multiple-box-shadow(700);
 $shadows-medium: multiple-box-shadow(200);
 $shadows-big:    multiple-box-shadow(100);
 
-html{
-  height: 100%;
 
-}
-body{
-  //background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-  background: linear-gradient(left,#090A0F,#1B2735,#090A0F)
+.background{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 }
 .stars1{
   @include star(1px,$shadows-small,50s)

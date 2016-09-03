@@ -13,14 +13,9 @@
             </circle>
         </svg>
     </div>
-
 </template>
 <script>
-    export default{
-        ready(){
-
-        }
-    }
+    export default{}
 </script>
 <style lang="sass">
     @import "../SCSS/Waiting.scss";
