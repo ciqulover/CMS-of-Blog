@@ -29,7 +29,7 @@
 
 ### 本地测试
 * 确保已有node环境
-* 安装mongoDB：以win平台为例，在C盘下新建data文件夹，进入data文件夹新建db文件夹（这是mongoDB启动时默认的数据存储目录，如果安装在其他盘上，需要在启动时通过--dbpath参数指定目录。注意mongoDB不会自动创建这个目录，如果没有目录启动时会错误）
+* 配置mongoDB：[官网下载](https://www.mongodb.com/download-center?jmp=nav#community)安装完成后，需要进行一点准备。以win平台为例，在C盘下新建data文件夹，进入data文件夹新建db文件夹（这是mongoDB启动时默认的数据存储目录，如果安装在其他盘上，需要在启动时通过--dbpath参数指定目录。注意mongoDB不会自动创建这个目录，如果没有目录启动时会错误）
 进入mongoDB的安装目录，一般在C:\Program Files\MongoDB\Server\3.2\bin（因版本而异）
 进入bin目录后，从终端启动目录下的mongod.exe（win可以按住shift右击空白处从当前目录打开命令行）
 ```
@@ -56,3 +56,8 @@ node www
 ```
 打开浏览器输入http://localhost:3000/
 如果一切OK，则进入博客的归档页面，登陆按钮在最下方。
+###### 注意
+* 第一次从node启动时，数据库会初始化，自动插入两个用户，分别是'游客'和'ycwalker'，后者有管理员权限，默认密码是111.
+* 如果需要改动，则在第一次启动前打开server目录下的db.js，初始化数据放在该文件中。
+* 推荐[MongoChef](http://3t.io/mongochef/)作为mongoDB可视化管理工具
+* 如果有疑问，欢迎交流~
