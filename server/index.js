@@ -3,7 +3,28 @@ var router = express.Router();
 var db = require('./db')
 
 router.get('/', function (req, res, next) {
-    res.render('index', {title: 'Express'});
+    res.render('index', {});
+})
+
+router.get('/article', function (req, res, next) {
+    var id = req.query.id
+    db.Article.findOne({_id: id}, function (err, doc) {
+        if (err) {
+            return console.log(err)
+        } else if (doc) {
+            res.send(doc)
+        }
+    })
+})
+
+router.get('/articleList', function (req, res, next) {
+    db.Article.find(null, 'title date', function (err, doc) {
+        if (err) {
+            return console.log(err)
+        } else if (doc) {
+            res.send(doc)
+        }
+    })
 })
 
 router.post('/login', function (req, res, next) {
@@ -25,26 +46,7 @@ router.post('/login', function (req, res, next) {
         }
     })
 })
-router.get('/article', function (req, res, next) {
-    var id = req.query.id
-    db.Article.findOne({_id: id}, function (err, doc) {
-        if (err) {
-            return console.log(err)
-        } else if (doc) {
-            res.send(doc)
-        }
-    })
-})
-router.get('/articleList', function (req, res, next) {
 
-    db.Article.find(null, 'title date', function (err, doc) {
-        if (err) {
-            return console.log(err)
-        } else if (doc) {
-            res.send(doc)
-        }
-    })
-})
 router.post('/save', function (req, res, next) {
     if (req.body.id) {
         var obj = {
@@ -67,6 +69,7 @@ router.post('/save', function (req, res, next) {
     }
     res.send('OK')
 })
+
 router.post('/getLinks', function (req, res, next) {
     db.Link.find(null, function (err, doc) {
         if (err) {
@@ -76,6 +79,7 @@ router.post('/getLinks', function (req, res, next) {
         }
     })
 })
+
 router.post('/setLinks', function (req, res, next) {
     db.Link.remove(null, function (err) {})
     req.body.links.forEach(function (item) {
