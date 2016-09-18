@@ -24,7 +24,7 @@ $tableWidth: 20px 28% 8% 13% 13% 320px;
 }
 
 @mixin rightSide(){
-  font-family: $fontSourceSansPro;
+  font-family: $fontGothic;
   color: $baseColor1;
   position: absolute;
   left: 200px;
@@ -42,4 +42,9 @@ $tableWidth: 20px 28% 8% 13% 13% 320px;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8);
   z-index:9;
+}
+
+@mixin center(){
+  left:50%;
+  transform: translate(-50%, 0);
 }

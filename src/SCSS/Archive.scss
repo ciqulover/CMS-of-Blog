@@ -1,5 +1,3 @@
-@import "variables";
-
 .wrap{
   min-height: 100%;
   position: relative;
@@ -7,11 +5,10 @@
 }
 
 section.archive{
-  font-family: $fontSourceSansPro;
+  padding-bottom: 160px;
   ul{
     padding: 0;
     li{
-      list-style: none;
       padding: 2px 0 0 40px;
       p{
         font-size: 20px;
@@ -27,7 +24,7 @@ section.archive{
         color: #7f8c8d;
       }
       span.title{
-        margin-left: 125px;
+        margin-left: 130px;
         color: #42b983;
         cursor: pointer;
         word-break: break-all;

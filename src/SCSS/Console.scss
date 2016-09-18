@@ -1,57 +1,52 @@
 @import "variables";
 
+$pictureSize:100px;
+
 aside.console{
+  top:$headerHeight;
+  padding-top: 50px;
   position: absolute;
   left: 0;
-  top:$headerHeight;
   bottom:0;
   width:200px;
   background-color: transparent;
-  .head{
-    position: relative;
-    width: 100%;
-    height: 200px;
-    background-color: rgba(10,10,10,0.5);
-    .circle{
-      width:100px;
-      height: 100px;
-      position: relative;
-      top:50px;
-      left: 50px;
-      border-radius:50px;
-      overflow: hidden;
-      img{
-        width:100px;
-        height: 100px;
-      }
-    }
 
+  .circle{
+    width:$pictureSize;
+    height: $pictureSize;
+    margin: auto;
+    border-radius:50%;
+    overflow: hidden;
+    img{
+      width:$pictureSize;
+      height: $pictureSize;
+    }
   }
+
   menu{
     margin:0;
     padding: 0;
     position: absolute;
     top:200px;
     bottom: 0;
-    width: 200px;
+    width: 100%;
     color: $baseColor1;
-    border-right: 2px solid $baseColor1;
     ul{
       padding: 0 50px;
-      li{
-        margin: 10px 0 0 0;
+      >li{
+        transition: all 0.4s;
+        margin-top: 10px;
         border-bottom: 2px solid $baseColor1;
         padding-left: 4px;
-        list-style: none;
         cursor: pointer;
         height: 40px;
         line-height: 40px;
-        span{
+        >span{
           display: inline-block;
           margin-left:20px;
         }
-        :hover{
-          color: lighten($baseColor1,20%);
+        &:hover{
+          padding-left: 8px;
         }
       }
     }

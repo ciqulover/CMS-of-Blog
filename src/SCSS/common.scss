@@ -5,4 +5,16 @@
 
 html,body{
   height: 100%;
+  font-family: $fontGothic;
+}
+ul,ol,li{
+  list-style: none;
+}
+button{
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+a{
+  text-decoration: none;
 }

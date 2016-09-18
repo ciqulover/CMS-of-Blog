@@ -1,11 +1,11 @@
 <template>
     <navi-header></navi-header>
     <aside class="console">
-        <div class="head">
-            <div class="circle">
-                <img src="../img/me.jpg" alt="me">
-            </div>
+
+        <div class="circle">
+            <img src="../img/me.jpg" alt="me">
         </div>
+
         <menu class="navigation">
             <ul>
                 <li @click="$router.go('/')">

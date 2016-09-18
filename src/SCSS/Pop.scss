@@ -1,8 +1,6 @@
-@import "variables";
 @import "mixins";
 
 .shade{
-  font-family: $fontYaHei;
   font-weight: 100;
   @include shade();
   .content{

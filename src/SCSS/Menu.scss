@@ -2,49 +2,38 @@
 @import "mixins";
 
 section.menu{
-  background-color: transparent;
+  @include rightSide();
   color:$baseColor1;
-  position: absolute;
-  left: 200px;
-  top:$headerHeight;
-  bottom: 0;
-  width: calc(100% - 200px);
   min-width: 500px;
   .title{
     width:400px;
-    height: 60px;
     text-align: center;
-    font-size: 40px;
-    margin: 20px auto;
+    font-size: 30px;
+    margin: 40px auto;
   }
   table {
-    font-family: $fontHelvetica;
-    width: 80%;
-    max-width: 700px;
-    position: absolute;
-    top: calc(100px + 5%);
-    left: 50%;
-    transform: translate(-50%, 0);
+    width: 700px;
+    position: relative;
+    @include center();
     tr {
-      height: 60px;
+      height: 50px;
       th {
         &:first-of-type {
-          width: 140px;
+          width: 120px;
         }
         &:nth-of-type(2) {
           width:60%;
-          min-width: 200px;
         }
       }
       td {
         text-align: center;
         input{
-          @include defaultInput(300px,30px);
+          @include defaultInput(60%,30px);
           border:1px solid $baseColor1;
         }
         &:first-of-type{
           input{
-            width:100px;
+            max-width:60px;
           }
           i{
             cursor: pointer;
@@ -56,13 +45,10 @@ section.menu{
           }
         }
       }
-
     }
   }
   .panel{
-    margin: 0 50px;
-    position: relative;
-    height: 30px;
+    margin-top: 50px;
     button{
       @include defaultButton();
       position: absolute;

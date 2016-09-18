@@ -2,21 +2,18 @@ section.container {
   margin: 2em 10px;
 }
 
-@media screen and (min-width: 700px) {
-  .wrap,footer {
-    width: 700px;
-    margin: 0 auto;
-  }
+@media screen and (min-width: 701px) {
   header.myHeader {
     padding: 20px 100px;
     margin-bottom: 60px;
   }
+  .wrap,footer {
+    width: 700px;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width: 700px) {
-  .wrap,footer {
-    width: 100%;
-  }
   header.myHeader {
     padding: 20px 0;
     margin-bottom: 20px;;
@@ -31,8 +28,11 @@ section.container {
         padding: 10px 10px;
       }
     }
-
   }
+  .wrap,footer {
+    width: 100%;
+  }
+
   section .post-block {
     padding: 0 30px;
   }
@@ -45,5 +45,4 @@ section.container {
   .archive .item{
     padding-left: 20px;
   }
-
 }
