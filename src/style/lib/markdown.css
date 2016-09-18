@@ -41,7 +41,6 @@ li ul, li ul {
 p, ul, ol {
     font-size: 16px;
     line-height: 24px;
-    max-width: 540px;
 }
 pre {
     padding: 0 24px;

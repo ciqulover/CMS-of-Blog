@@ -58,10 +58,10 @@ $tableWidth: 20px 28% 8% 13% 13% 320px;
 
 @mixin panel(){
   margin-top: 50px;
+  text-align: right;
+  padding-right: 100px;
   button{
     @include defaultButton();
-    position: absolute;
-    right: 0;
     height: 30px;
     width: 60px;
     border: 1px solid $baseColor1;
