@@ -1,9 +1,9 @@
 {
-  "name": "vue-platform",
-  "description": "A Vue.js project",
+  "name": "Blog-of-CMS",
+  "description": "A Blog CMS Powered by Vue.js",
   "author": "ycwalker",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --color --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",

@@ -1,6 +1,6 @@
 module.exports={
     admin:{
-        name:'ycwalker',
+        name:'admin',
         password:'111'
     },
     visitor:{

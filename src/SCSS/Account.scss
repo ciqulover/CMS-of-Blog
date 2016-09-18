@@ -1,13 +1,21 @@
-@import "variables";
 @import "mixins";
 
 section.account{
   @include rightSide();
   .title{
-    width:400px;
-    height: 60px;
-    text-align: center;
-    font-size: 40px;
-    margin: 20px auto;
+    @include title();
+
+  }
+  .password{
+    width: 260px;
+    margin: 120px auto 40px auto;
+    input{
+      margin: 30px auto;
+      @include defaultInput(200px,40px);
+      border-bottom: 1px solid $baseColor1;
+    }
+  }
+  .panel{
+    @include panel();
   }
 }

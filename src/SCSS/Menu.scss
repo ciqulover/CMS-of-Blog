@@ -6,10 +6,7 @@ section.menu{
   color:$baseColor1;
   min-width: 500px;
   .title{
-    width:400px;
-    text-align: center;
-    font-size: 30px;
-    margin: 40px auto;
+    @include title();
   }
   table {
     width: 700px;
@@ -48,14 +45,6 @@ section.menu{
     }
   }
   .panel{
-    margin-top: 50px;
-    button{
-      @include defaultButton();
-      position: absolute;
-      right: 0;
-      height: 30px;
-      width: 60px;
-      border: 1px solid $baseColor1;
-    }
+    @include panel();
   }
 }

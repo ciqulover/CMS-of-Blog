@@ -11,10 +11,12 @@
                 <td>
                     <i class="fa fa-plus-circle"
                        @click="addLink($index)"
-                       v-if="links.length<4"></i>
+                       v-if="links.length<4">
+                    </i>
                     <i class="fa fa-minus-circle"
                        @click="removeLink($index)"
-                       v-if="links.length>1"></i>
+                       v-if="links.length>1">
+                    </i>
                     <input type="text" v-model="link.name">
                 </td>
                 <td>

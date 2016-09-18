@@ -52,7 +52,6 @@
                     }, (response)=> {
                         console.log(response)
                     })
-
         },
         ready(){
             this.bgToggle('MyCanvas')

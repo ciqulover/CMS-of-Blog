@@ -1,4 +1,4 @@
-
+@import "variables";
 $tableWidth: 20px 28% 8% 13% 13% 320px;
 
 @mixin defaultButton($bgColor1:transparent,$bgColor2:$baseColor1) {
@@ -24,7 +24,6 @@ $tableWidth: 20px 28% 8% 13% 13% 320px;
 }
 
 @mixin rightSide(){
-  font-family: $fontGothic;
   color: $baseColor1;
   position: absolute;
   left: 200px;
@@ -47,4 +46,23 @@ $tableWidth: 20px 28% 8% 13% 13% 320px;
 @mixin center(){
   left:50%;
   transform: translate(-50%, 0);
+}
+
+@mixin title(){
+  width:400px;
+  text-align: center;
+  font-size: 30px;
+  margin: 40px auto;
+}
+
+@mixin panel(){
+  margin-top: 50px;
+  button{
+    @include defaultButton();
+    position: absolute;
+    right: 0;
+    height: 30px;
+    width: 60px;
+    border: 1px solid $baseColor1;
+  }
 }

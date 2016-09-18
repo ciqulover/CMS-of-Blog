@@ -15,7 +15,7 @@ import Archive      from './components/Archive.vue'
 import Menu         from './components/Menu.vue'
 import Account      from './components/Account.vue'
 import Theme        from './components/Theme.vue'
-import Background   from './components/Background.vue'
+import NightSky   from './components/NightSky.vue'
 import MyCanvas     from './components/MyCanvas.vue'
 
 import store        from './vuex/store'
@@ -66,7 +66,7 @@ let App = Vue.extend({
     data(){
         return {}
     },
-    components: {Waiting,Pop,Background,MyCanvas},
+    components: {Waiting,Pop,NightSky,MyCanvas},
     http: {
         root: '/'
     },

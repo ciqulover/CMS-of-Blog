@@ -24,10 +24,10 @@
                 <!--<i class="fa fa-star fa-fw"></i>-->
                 <!--<span>主题</span>-->
                 <!--</li>-->
-                <!--<li @click="$router.go('/console/account')">-->
-                <!--<i class="fa fa-user fa-fw"></i>-->
-                <!--<span>账户</span>-->
-                <!--</li>-->
+                <li @click="$router.go('/console/account')">
+                <i class="fa fa-user fa-fw"></i>
+                <span>账户</span>
+                </li>
             </ul>
         </menu>
     </aside>
@@ -51,7 +51,7 @@ import NaviHeader               from './NaviHeader.vue'
             NaviHeader,
         },
         ready(){
-            this.bgToggle('Background')
+            this.bgToggle('NightSky')
         },
         vuex: {
             getters: {

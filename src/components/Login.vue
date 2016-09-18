@@ -57,7 +57,7 @@
     </section>
 </template>
 <script>
-    import {toggle, setUser,bgToggle}    from '../vuex/actions'
+    import {toggle, setUser, bgToggle}    from '../vuex/actions'
     import {get, set}           from '../js/cookieUtil'
     export default{
         data(){
@@ -66,7 +66,7 @@
                 password: '',
                 info: '',
                 userRule: {
-                    pattern: '/^[a-zA-Z0-9_]+$/',
+                    pattern: '/^[a-zA-Z0-9\u4e00-\u9fa5_]+$/',
                 },
                 passwordRule: {
                     minlength: 1,
@@ -83,7 +83,7 @@
             }
         },
         ready(){
-            this.bgToggle('Background')
+            this.bgToggle('NightSky')
         },
         methods: {
             loginRequest(){
@@ -91,12 +91,14 @@
                 this.$validate(true, ()=> {
                     if (this.$loginValidator.valid) {
                         this.toggle()
-                        this.$http.post('/login', this.$data)
-                                .then((response)=> {
-                                    this.loginResponse(response)
-                                }, (response)=> {
-                                    console.log(response)
-                                })
+                        this.$http.post('/login', {
+                            userName: this.userName,
+                            password: this.password
+                        }).then((response)=> {
+                            this.loginResponse(response)
+                        }, (response)=> {
+                            console.log(response)
+                        })
                     }
                 })
             },
@@ -119,12 +121,11 @@
                 this.$http.post('/login', {
                     userName: '游客',
                     password: '000'
+                }).then((response)=> {
+                    this.loginResponse(response, '游客')
+                }, (response)=> {
+                    console.log(response)
                 })
-                        .then((response)=> {
-                            this.loginResponse(response, '游客')
-                        }, (response)=> {
-                            console.log(response)
-                        })
             }
         },
         vuex: {
@@ -138,5 +139,5 @@
 </script>
 <style lang="sass">
     @import "../SCSS/common.scss";
-    @import "../SCSS/Login.scss";
+    @import "../SCSS/Login.scss"
 </style>

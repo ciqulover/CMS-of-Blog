@@ -93,6 +93,15 @@ router.post('/setLinks', function (req, res, next) {
     res.send('ok')
 })
 
+router.post('/savePw', function (req, res, next) {
+    var name = req.body.userName,
+        password = req.body.password
+    db.User.findOneAndUpdate({name: name},
+        {password:password},
+        function () {})
+    res.send('ok')
+})
+
 router.post('/delete', function (req, res, next) {
     db.Article.findByIdAndRemove(req.body.id, function (err) {
         console.log(err)

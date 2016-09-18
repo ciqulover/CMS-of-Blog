@@ -8,10 +8,10 @@
             </textarea>
             <button class="toggle"
                     @click="editToggle">
-                <i class="fa fa-chevron-right fa-fw"
+                <i class="fa fa-chevron-left fa-fw"
                    v-show="view==='edit'">
                 </i>
-                <i class="fa fa-chevron-left fa-fw"
+                <i class="fa fa-chevron-right fa-fw"
                    v-show="view==='inspect'">
                 </i>
             </button>
