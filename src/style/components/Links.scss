@@ -1,7 +1,6 @@
-@import "variables";
-@import "mixins";
+@import "../mixins";
 
-section.menu{
+section.links{
   @include rightSide();
   color:$baseColor1;
   min-width: 500px;

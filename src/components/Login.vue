@@ -138,6 +138,6 @@
     }
 </script>
 <style lang="sass">
-    @import "../SCSS/common.scss";
-    @import "../SCSS/Login.scss"
+    @import "../style/common.scss";
+    @import "../style/components/Login.scss";
 </style>

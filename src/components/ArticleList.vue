@@ -130,5 +130,5 @@
     }
 </script>
 <style lang="sass">
-    @import "../SCSS/ArticleList.scss";
+    @import "../style/components/ArticleList.scss";
 </style>

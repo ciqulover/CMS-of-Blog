@@ -9,5 +9,5 @@
     export default{}
 </script>
 <style lang="sass">
-@import "../SCSS/NightSky.scss"
+@import "../style/components/NightSky.scss";
 </style>

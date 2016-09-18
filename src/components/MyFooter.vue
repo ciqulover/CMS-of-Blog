@@ -18,5 +18,5 @@ export default{
 }
 </script>
 <style lang="sass">
-@import "../SCSS/MyFooter.scss";
+@import "../style/components/MyFooter.scss";
 </style>

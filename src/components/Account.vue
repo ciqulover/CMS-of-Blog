@@ -76,5 +76,5 @@
     }
 </script>
 <style lang="sass">
-    @import "../SCSS/Account.scss";
+    @import "../style/components/Account.scss";
 </style>

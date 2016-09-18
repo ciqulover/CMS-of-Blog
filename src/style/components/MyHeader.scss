@@ -1,5 +1,3 @@
-@import "variables";
-
 header.myHeader{
   min-height: 60px;
   .circle{
@@ -25,6 +23,7 @@ header.myHeader{
         color: #2c3e50;
       }
       a:hover {
+        text-decoration: none;
         border-bottom: 2px solid #42b983;
       }
     }

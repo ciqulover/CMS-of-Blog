@@ -18,5 +18,5 @@
     export default{}
 </script>
 <style lang="sass">
-    @import "../SCSS/Waiting.scss";
+    @import "../style/components/Waiting.scss";
 </style>

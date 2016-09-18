@@ -16,7 +16,8 @@
 <script>
     import myHeader     from './MyHeader.vue'
     import myFooter     from './MyFooter.vue'
-    import marked       from '../js/marked.min.js'
+    import marked       from '../js/marked.min'
+    import hljs         from '../js/highlight.min'
     import {bgToggle}   from '../vuex/actions'
 
     export default{
@@ -29,6 +30,9 @@
         },
         filters: {
             marked
+        },
+        watch: {
+            content: hljs.initHighlighting
         },
         created(){
             let id = this.$route.query.id
@@ -51,14 +55,16 @@
         },
         ready(){
             this.bgToggle('MyCanvas')
+            hljs.initHighlighting()
+            hljs.initHighlighting.called = false
         },
-        vuex:{
-            actions:{
+        vuex: {
+            actions: {
                 bgToggle
             }
         }
     }
 </script>
 <style lang="sass">
-    @import "../SCSS/Article.scss";
+    @import "../style/components/Article.scss";
 </style>

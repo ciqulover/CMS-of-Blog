@@ -1,5 +1,4 @@
-@import "variables";
-
+@import "../mixins";
 $pictureSize:100px;
 
 aside.console{
@@ -34,6 +33,7 @@ aside.console{
     ul{
       padding: 0 50px;
       >li{
+        list-style: none;
         transition: all 0.4s;
         margin-top: 10px;
         border-bottom: 2px solid $baseColor1;

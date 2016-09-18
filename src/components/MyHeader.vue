@@ -31,5 +31,5 @@
     }
 </script>
 <style lang="sass">
-    @import "../SCSS/MyHeader.scss";
+    @import "../style/components/MyHeader.scss";
 </style>

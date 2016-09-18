@@ -1,5 +1,4 @@
-@import "variables";
-@import "mixins";
+@import "../mixins";
 
 section.articleList {
   @include rightSide();

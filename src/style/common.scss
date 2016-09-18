@@ -1,5 +1,7 @@
-@import "normalize";
-@import "font-awesome";
+@import "lib/normalize";
+@import "lib/font-awesome";
+@import "lib/markdown";
+@import "lib/highlight";
 @import "variables";
 @import "mediaQuery";
 
@@ -7,9 +9,7 @@ html,body{
   height: 100%;
   font-family: $fontGothic;
 }
-ul,ol,li{
-  list-style: none;
-}
+
 button{
   border: none;
   outline: none;

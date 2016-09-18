@@ -1,11 +1,9 @@
 <template>
     <navi-header></navi-header>
     <aside class="console">
-
         <div class="circle">
             <img src="../img/me.jpg" alt="me">
         </div>
-
         <menu class="navigation">
             <ul>
                 <li @click="$router.go('/')">
@@ -20,13 +18,9 @@
                     <i class="fa fa-list-ul fa-fw"></i>
                     <span>链接</span>
                 </li>
-                <!--<li @click="$router.go('/console/theme')">-->
-                <!--<i class="fa fa-star fa-fw"></i>-->
-                <!--<span>主题</span>-->
-                <!--</li>-->
                 <li @click="$router.go('/console/account')">
-                <i class="fa fa-user fa-fw"></i>
-                <span>账户</span>
+                    <i class="fa fa-user fa-fw"></i>
+                    <span>账户</span>
                 </li>
             </ul>
         </menu>
@@ -65,5 +59,5 @@ import NaviHeader               from './NaviHeader.vue'
     }
 </script>
 <style lang="sass">
-    @import "../SCSS/Console.scss";
+    @import "../style/components/Console.scss";
 </style>

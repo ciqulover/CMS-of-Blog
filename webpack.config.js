@@ -37,8 +37,8 @@ module.exports = {
                     limit: 10000,
                     name: '[name].[ext]?[hash]'
                 }
-            }
-            , {
+            },
+            {
                 test: /\.(woff|svg|eot|ttf)\??.*$/,
                 loader: 'url-loader?limit=50000&name=[path][name].[ext]'
             }

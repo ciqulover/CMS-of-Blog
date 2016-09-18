@@ -53,5 +53,5 @@
     }
 </script>
 <style lang="sass">
-    @import "../SCSS/NaviHeader.scss";
+    @import "../style/components/NaviHeader.scss";
 </style>

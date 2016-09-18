@@ -36,5 +36,5 @@
     }
 </script>
 <style lang="sass">
-    @import "../SCSS/Pop.scss";
+    @import "../style/components/Pop.scss";
 </style>

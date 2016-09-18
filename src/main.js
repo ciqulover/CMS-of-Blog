@@ -12,9 +12,8 @@ import Editor       from './components/Editor.vue'
 import Console      from './components/Console.vue'
 import ArticleList  from './components/ArticleList.vue'
 import Archive      from './components/Archive.vue'
-import Menu         from './components/Menu.vue'
+import Links        from './components/Links.vue'
 import Account      from './components/Account.vue'
-import Theme        from './components/Theme.vue'
 import NightSky   from './components/NightSky.vue'
 import MyCanvas     from './components/MyCanvas.vue'
 
@@ -50,15 +49,11 @@ router.map({
                 component: ArticleList
             },
             '/menu': {
-                component: Menu
+                component: Links
             },
             'account': {
                 component: Account
             },
-            'theme': {
-                component: Theme
-            }
-
         },
     },
 })

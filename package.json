@@ -12,21 +12,15 @@
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
-    "mongoose": "^4.5.8",
-    "express": "~4.13.4",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
+    "express": "~4.13.4",
     "jade": "~1.11.0",
-    "serve-favicon": "~2.3.0",
-    "morgan": "~1.7.0"
+    "mongoose": "^4.5.8",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "vue": "^1.0.0",
-    "vue-animated-list": "^1.0.2",
-    "vue-resource": "^0.9.3",
-    "vue-router": "^0.7.13",
-    "vue-validator": "^2.1.5",
-    "vuex": "^1.0.0-rc.2",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-plugin-transform-runtime": "^6.0.0",
@@ -43,10 +37,16 @@
     "supervisor": "^0.11.0",
     "uglify-js": "^2.7.0",
     "url-loader": "^0.5.7",
+    "vue": "^1.0.0",
+    "vue-animated-list": "^1.0.2",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.2.1",
+    "vue-resource": "^0.9.3",
+    "vue-router": "^0.7.13",
     "vue-style-loader": "^1.0.0",
+    "vue-validator": "^2.1.5",
+    "vuex": "^1.0.0-rc.2",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
   }
