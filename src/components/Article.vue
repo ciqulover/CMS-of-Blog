@@ -31,6 +31,9 @@
         filters: {
             marked
         },
+        route: {
+            canReuse:()=>false
+        },
         watch: {
             content: hljs.initHighlighting
         },
