@@ -56,7 +56,6 @@ blockquote {
     border-left:.5em solid #eee;
     padding: 0 2em;
     margin-left:0;
-    max-width: 476px;
 }
 blockquote  cite {
     font-size:14px;
@@ -69,7 +68,6 @@ blockquote cite:before {
 
 blockquote p {
     color: #666;
-    max-width: 460px;
 }
 hr {
     width: 540px;
