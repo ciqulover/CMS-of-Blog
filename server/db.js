@@ -1,69 +1,55 @@
-var mongoose =  require('mongoose'),
-    Schema =    mongoose.Schema,
-    init =      require('./init'),
+const mongoose = require('mongoose')
+const init = require('./init.json')
+const Schema = mongoose.Schema
 
-    userSchema =    new Schema({
-        name: String,
-        password: String,
-    }),
+const userSchema = new Schema({
+  name: String,
+  pwd: String,
+})
 
-    articleSchema = new Schema({
-        title: String,
-        date: Date,
-        content: String,
-    }),
+const articleSchema = new Schema({
+  title: String,
+  date: Date,
+  content: String,
+})
 
-    linkSchema =    new Schema({
-        name: String,
-        href: String,
-    }),
+const linkSchema = new Schema({
+  name: String,
+  href: String,
+})
 
-    User =      mongoose.model('User', userSchema),
-    Article =   mongoose.model('Article', articleSchema),
-    Link =      mongoose.model('Link', linkSchema),
+const Models = {
+  User: mongoose.model('User', userSchema),
+  Article: mongoose.model('Article', articleSchema),
+  Link: mongoose.model('Link', linkSchema)
+}
 
-    admin =     new User(init.admin),
-    visitor =   new User(init.visitor),
-    article =   new Article(init.article),
-    link =      new Link(init.link)
+const errorPrinter = err=> {
+  if (err) {
+    console.log(err)
+    process.exit(1)
+  }
+}
+mongoose.connect('mongodb://127.0.0.1/CMS2')
+// mongoose.set('debug', true)
 
-
-mongoose.connect('mongodb://localhost/platform')
-mongoose.set('debug', true)
-
-var db = mongoose.connection
+const db = mongoose.connection
 db.on('error', function () {
-    console.log('error')
+  console.log('Database connection error.')
 })
 db.once('open', function () {
-    console.log('opened')
+  console.log('The database has connected.')
 
-    User.find(null, function (err, doc) {
-        if (err) {
-            console.log(err)
-        } else {
-            if (!doc[0]) {
-                visitor.save(function (err) {
-                    if (err)return console.log(err)
-                })
-
-                link.save(function (err) {
-                    if (err)return console.log(err)
-                })
-
-                admin.save(function (err) {
-                    if (err)return console.log(err)
-                })
-                article.save(function (err) {
-                    if (err)return console.log(err)
-                })
-            }
-        }
-    })
+  Models.User.find(null, function (err, doc) {
+    if (err) {
+      console.log(err)
+      process.exit(1)
+    } else {
+      if (!doc[0]) {
+        init.forEach(item=>new Models[item.type](item).save(errorPrinter))
+      }
+    }
+  })
 })
 
-module.exports = {
-    User: User,
-    Article: Article,
-    Link: Link
-}
+module.exports = Models
