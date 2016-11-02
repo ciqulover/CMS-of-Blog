@@ -1,7 +1,7 @@
 const fs=require('fs')
 const path=require('path')
 const express=require('express')
-// const favicon=require('serve-favicon')
+const favicon=require('serve-favicon')
 const bodyParser=require('body-parser')
 const cookieParser = require('cookie-parser')
 // const createBundleRenderer = require('vue-server-renderer').createBundleRenderer
@@ -12,7 +12,6 @@ const api=require('./api')
 
 const app=express()
 
-//todo
 app.set('port',(process.env.port||3000))
 
 app.use(bodyParser.json())
@@ -26,7 +25,7 @@ app.get('*',function (req,res) {
   res.send(html)
 })
 
-// app.use(favicon(resolve('')))
+app.use(favicon(resolve('../dist/favicon.ico')))
 
 app.listen(app.get('port'),function () {
   console.log('Visit http://localhost:3000')

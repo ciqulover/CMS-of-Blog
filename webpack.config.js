@@ -44,9 +44,9 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("styles.css"),
-    // new CopyWebpackPlugin([
-    //   {from:'./src/assets/style',to:'./style'}
-    // ])
+    new CopyWebpackPlugin([
+      {from:'./src/assets/img',to:'./'}
+    ])
   ],
   resolve: {
     alias: {
@@ -67,7 +67,6 @@ module.exports = {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {

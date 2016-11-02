@@ -1,14 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const db = require('./db')
-const errorHandler = err=> console.log(err)
-const fn = ()=> ''
+const fn = ()=> {}
 
 router.get('/api/getArticle', function (req, res) {
   const _id = req.query.id
   db.Article.findOne({_id}, function (err, doc) {
     if (err) {
-      errorHandler(err)
+      console.log(err)
     } else if (doc) {
       res.send(doc)
     }
@@ -18,7 +17,7 @@ router.get('/api/getArticle', function (req, res) {
 router.get('/api/getArticles', function (req, res) {
   db.Article.find(null, 'title date content', function (err, doc) {
     if (err) {
-      errorHandler(err)
+      console.log(err)
     } else if (doc) {
       res.send(JSON.stringify(doc))
     }
@@ -30,7 +29,7 @@ router.post('/api/login', function (req, res) {
   db.User.findOne({name}, 'pwd', function (err, doc) {
     switch (true) {
       case !!err:
-        errorHandler(err)
+        console.log(err)
         break
       case !doc:
         res.send({state: 0, msg: '账号不存在'})
@@ -71,7 +70,7 @@ router.post('/api/deleteArticle', function (req, res) {
 router.post('/api/getLinks', function (req, res) {
   db.Link.find(null, function (err, doc) {
     if (err) {
-      errorHandler(err)
+      console.log(err)
     } else if (doc) {
       res.send(doc)
     }
@@ -80,9 +79,7 @@ router.post('/api/getLinks', function (req, res) {
 
 router.post('/api/saveLinks', function (req, res) {
   const links = req.body || []
-  db.Link.remove(null, function () {
-
-  })
+  db.Link.remove(null, fn)
   links.forEach(function ({name, href}) {
     new db.Link({name, href}).save()
   })

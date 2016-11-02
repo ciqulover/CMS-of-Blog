@@ -1,6 +1,6 @@
 <template>
   <section class="login">
-    <div class="form" @keyup.enter="doLogin()">
+    <div class="form" @keyup.enter="doLogin">
       <p class="icon">
         <i class="fa fa-fire fa-2x"></i>
       </p>
@@ -46,21 +46,19 @@
       }
     },
     methods: {
-      doLogin(logInfo = {
-        name: this.userName,
-        pwd: this.password
-      }){
-        this.$store.dispatch('login', logInfo)
-          .then(
-            ()=> {
-              const date = new Date(Date.now() + 60000 * 30)
-              const hostName = location.hostname
-              set('user', this.userName, date, '/', hostName)
-              this.$router.push({path: '/console'})
-              console.log(1)
-            },
-            msg=>this.info = msg
-          )
+      doLogin(){
+        this.$store.dispatch('login', {
+          name: this.userName,
+          pwd: this.password
+        }).then(
+          ()=> {
+            const date = new Date(Date.now() + 60000 * 30)
+            const hostName = location.hostname
+            set('user', this.userName, date, '/', hostName)
+            this.$router.push({path: '/console'})
+          },
+          msg=>this.info = msg
+        )
       },
       demo(){
         this.userName = 'visitor'
@@ -71,7 +69,7 @@
   }
 </script>
 <style lang="sass" rel="stylesheet/scss">
-  @import "../../style/main";
+  @import "../../style/variables";
 
   section.login {
     position: absolute;
@@ -116,7 +114,7 @@
         }
       }
       > p {
-        height: 40px;
+        height: 50px;
         text-align: center;
         transition: all 0.4s;
         input {

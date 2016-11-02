@@ -5,7 +5,7 @@ const beginLoading = commit=> {
   return Date.now()
 }
 
-const stopLoading = (commit, start, timeAllowed = 0)=> {
+const stopLoading = (commit, start, timeAllowed = 400)=> {
   const spareTime = timeAllowed - (Date.now() - start)
   setTimeout(commit, spareTime > 0 ? spareTime : 0, 'LOADING_TOGGLE', false)
 }
@@ -16,12 +16,12 @@ const doToast = (state, commit, payload)=> {
   return state.toast.promise
 }
 
-const checkAuthority=(state,commit)=>{
-  if(state.user.name==='visitor'){
+const checkAuthority = (state, commit)=> {
+  if (state.user.name === 'visitor') {
     doToast(state, commit, {info: '权限不够', btnNum: 1})
       .finally(()=>commit('TOASTING_TOGGLE', false))
     return false
-  }else {
+  } else {
     return true
   }
 }
@@ -37,24 +37,24 @@ Promise.prototype.finally = function (callback) {
 
 export default {
   getArticles: ({commit})=> {
-    // const start = beginLoading(commit)
+    const start = beginLoading(commit)
     return Vue.http.get('/api/getArticles')
       .then(response=> response.json())
       .then(articles=> {
-        // stopLoading(commit, start)
+        stopLoading(commit, start)
         commit('SET_ARTICLES', articles)
-        return Promise.resolve()
       })
   },
   getArticle({commit}, id){
+    const start = beginLoading(commit)
     return Vue.http.get('/api/getArticle', {params: {id}})
       .then(response=> {
+        stopLoading(commit, start)
         commit('SET_ARTICLE', response.data)
-        return Promise.resolve()
       })
   },
   saveArticle({state, commit}){
-    if(!checkAuthority(state, commit)){
+    if (!checkAuthority(state, commit)) {
       return Promise.reject('保存权限不够')
     }
     return Vue.http.post('/api/saveArticle', state.article)
@@ -65,24 +65,23 @@ export default {
       .finally(()=>commit('TOASTING_TOGGLE', false))
   },
   deleteArticle({state, commit, dispatch}, id){
-    if(!checkAuthority(state, commit)){
+    if (!checkAuthority(state, commit)) {
       return
     }
     return doToast(state, commit, {info: '确定要删除吗?', btnNum: 2})
       .then(()=>Vue.http.post('/api/deleteArticle', {id}))
       .finally(()=>commit('TOASTING_TOGGLE', false))
       .then(()=>dispatch('getArticles'))
-      .catch(()=> '')
+      .catch(()=> {})
   },
   getLinks({commit}) {
     return Vue.http.post('/api/getLinks')
       .then(response=> {
         commit('SET_LINKS', response.data)
-        return Promise.resolve()
       })
   },
   saveLinks({state, commit}){
-    if(!checkAuthority(state, commit)){
+    if (!checkAuthority(state, commit)) {
       return
     }
     return Vue.http.post('/api/saveLinks', state.links)
@@ -93,7 +92,7 @@ export default {
       .finally(()=>commit('TOASTING_TOGGLE', false))
   },
   savePwd({state, commit}, pwd){
-    if(!checkAuthority(state, commit)){
+    if (!checkAuthority(state, commit)) {
       return
     }
     return Vue.http.post('/api/savePwd', {name: state.user.name, pwd})
