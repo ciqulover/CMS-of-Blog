@@ -26,7 +26,7 @@ const Models = {
 }
 
 mongoose.connect('mongodb://127.0.0.1/CMS2')
-mongoose.set('debug', true)
+// mongoose.set('debug', true)
 
 const db = mongoose.connection
 

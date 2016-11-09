@@ -1,15 +1,5 @@
 [
   {
-    "type": "User",
-    "name": "admin",
-    "pwd": "111"
-  },
-  {
-    "type": "User",
-    "name": "visitor",
-    "pwd": "000"
-  },
-  {
     "type": "Article",
     "title": "Hello World",
     "date": "2016/10/21",

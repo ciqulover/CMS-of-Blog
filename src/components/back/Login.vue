@@ -26,12 +26,6 @@
         <button @click="doLogin()">登陆
         </button>
       </p>
-      <p class="demo">
-        <span>以</span>
-        <span class="visitor"
-              @click="demo">游客</span>
-        <span>身份登陆（用于演示）</span>
-      </p>
     </div>
   </section>
 </template>
@@ -64,11 +58,6 @@
           },
           msg=>this.info = msg
         )
-      },
-      demo(){
-        this.name = 'visitor'
-        this.pwd = '000'
-        this.doLogin()
       },
       clearInfo(){
         this.info=''
@@ -114,17 +103,6 @@
       }
       .input:hover {
         color: $green2;
-      }
-      .demo {
-        color: $black3;
-        text-align: right;
-        margin-right: 80px;
-        margin-top: 20px;
-        font-size: 12px;
-        .visitor {
-          color: $green1;
-          cursor: pointer;
-        }
       }
       > p {
         height: 50px;

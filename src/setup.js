@@ -28,6 +28,14 @@ new Vue({
           this.info='创建成功, 即将跳转到登陆...'
           setTimeout(()=>location.reload(),3000)
         },()=>this.info='创建失败')
+    },
+    clearInfo(){
+      this.info=''
     }
+  },
+  watch:{
+    name:'clearInfo',
+    pwd:'clearInfo',
+    pwdRepeat:'clearInfo'
   }
 }).$mount('#setup')
