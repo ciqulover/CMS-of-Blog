@@ -1,0 +1,68 @@
+@import "variables";
+
+@mixin rightSide(){
+  position: absolute;
+  left: 200px;
+  top: 50px;
+  bottom: 0;
+  width: calc(100% - 200px);
+  overflow-y: auto;
+}
+
+@mixin shade(){
+  position:absolute;
+  top:0;
+  right: 0;
+  left:0;
+  bottom: 0;
+  z-index:1;
+}
+
+@mixin center(){
+  left:50%;
+  transform: translate(-50%, 0);
+}
+
+@mixin middle(){
+  right: 50%;
+  transform: translate(0,-50%);
+}
+
+@mixin centerMiddle(){
+  @include center();
+  @include middle();
+}
+
+@mixin title(){
+  width:400px;
+  text-align: center;
+  font-size: 30px;
+  height: 50px;
+  padding-top: 40px;
+  margin: 0 auto;
+}
+
+@mixin panel(){
+  margin-top: 50px;
+  text-align: right;
+  padding-right: 100px;
+}
+
+
+@mixin defaultButton($color){
+  border: 1px solid $color;
+  color:$color;
+  background-color: #FFF;
+  transition: all 0.6s;
+  border-radius: 4px;
+  &:hover{
+    background-color: $color;
+    color:#FFF;
+  }
+}
+@mixin greenButton(){
+  @include defaultButton($green1)
+}
+@mixin orangeButton(){
+  @include defaultButton($orange)
+}
