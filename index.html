@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>cms2simple</title>
+    <link rel="stylesheet" href="dist/styles.css">
+  </head>
+  <body>
+    <div id="CMS-Vue2" style="height: 100%">
+      <my-canvas></my-canvas>
+      <spinner v-show="isLoading"></spinner>
+      <Toast v-show="isToasting"></Toast>
+      <router-view ></router-view>
+    </div>
+    <script src="/dist/main.js"></script>
+  </body>
+</html>
