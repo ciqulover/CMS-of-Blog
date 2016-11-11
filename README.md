@@ -90,10 +90,13 @@ npm run server
 ```
 打开浏览器输入http://localhost:3000/
 打开账户建立页面，建立完毕，登入管理器
+
 ##### Notice
 * server目录下的init.json，初始化数据放在该文件中。
 * 推荐[MongoChef](http://3t.io/mongochef/)作为mongoDB可视化管理工具
+
 ## Todo
+
 * [ ] 移动端适配
   * [x] 博客前台页面
   * [ ] 博客内容管理
