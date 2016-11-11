@@ -3,9 +3,9 @@ const router = express.Router()
 const db = require('./db')
 const fn = ()=> {}
 
-router.get('/api/getArticle', function (req, res) {
+router.get('/api/getArticle', (req, res)=> {
   const _id = req.query.id
-  db.Article.findOne({_id}, function (err, doc) {
+  db.Article.findOne({_id}, (err, doc)=> {
     if (err) {
       console.log(err)
     } else if (doc) {
@@ -14,8 +14,8 @@ router.get('/api/getArticle', function (req, res) {
   })
 })
 
-router.get('/api/getArticles', function (req, res) {
-  db.Article.find(null, 'title date content', function (err, doc) {
+router.get('/api/getArticles', (req, res)=> {
+  db.Article.find(null, 'title date content', (err, doc) => {
     if (err) {
       console.log(err)
     } else if (doc) {
@@ -24,9 +24,9 @@ router.get('/api/getArticles', function (req, res) {
   })
 })
 
-router.post('/api/login', function (req, res) {
-  const {name, pwd}=req.body
-  db.User.findOne({name}, 'pwd', function (err, doc) {
+router.post('/api/login', (req, res) => {
+  const {name, pwd} = req.body
+  db.User.findOne({name}, 'pwd', (err, doc) => {
     switch (true) {
       case !!err:
         console.log(err)
@@ -46,7 +46,7 @@ router.post('/api/login', function (req, res) {
   })
 })
 
-router.post('/api/saveArticle', function (req, res) {
+router.post('/api/saveArticle', (req, res)=> {
   const id = req.body._id
   const article = {
     title: req.body.title,
@@ -62,13 +62,13 @@ router.post('/api/saveArticle', function (req, res) {
 })
 
 
-router.post('/api/deleteArticle', function (req, res) {
+router.post('/api/deleteArticle', (req, res)=> {
   db.Article.findByIdAndRemove(req.body.id, fn)
   res.status(200).end()
 })
 
-router.post('/api/getLinks', function (req, res) {
-  db.Link.find(null, function (err, doc) {
+router.post('/api/getLinks', (req, res) => {
+  db.Link.find(null, (err, doc)=> {
     if (err) {
       console.log(err)
     } else if (doc) {
@@ -77,19 +77,18 @@ router.post('/api/getLinks', function (req, res) {
   })
 })
 
-router.post('/api/saveLinks', function (req, res) {
+router.post('/api/saveLinks', (req, res)=> {
   const links = req.body || []
   db.Link.remove(null, fn)
-  links.forEach(function ({name, href}) {
-    new db.Link({name, href}).save()
-  })
-  res.status(200).end()
+  const promises = links.map(({name, href})=> new db.Link({name, href}).save())
+  Promise.all(promises)
+    .then(()=>res.status(200).end())
+    .catch(()=>res.status(500).end())
 })
 
-router.post('/api/savePwd', function (req, res) {
-  const {name, pwd}=req.body
-  db.User.findOneAndUpdate({name}, {pwd}, function () {
-  })
+router.post('/api/savePwd', (req, res)=> {
+  const {name, pwd} = req.body
+  db.User.findOneAndUpdate({name}, {pwd}, fn)
   res.status(200).end()
 })
 

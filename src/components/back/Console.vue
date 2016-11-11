@@ -50,9 +50,10 @@
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>
   $pictureSize: 100px;
-  .container{
+  .container {
     height: 100%;
   }
+
   aside.console {
     box-sizing: border-box;
     padding-top: 50px;

@@ -38,35 +38,36 @@
       mapState(['articles']),
       mapGetters(['archive'])
     ),
-    components: {Spinner,MyHeader,MyFooter}
+    components: {Spinner, MyHeader, MyFooter}
   }
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>
-  main.wrap{
+  main.wrap {
     min-height: 100%;
     position: relative;
   }
-  section.archive{
+
+  section.archive {
     padding-bottom: 160px;
-    ul{
+    ul {
       padding: 0;
-      li{
+      li {
         list-style: none;
         padding: 2px 0 0 40px;
-        p{
+        p {
           font-size: 20px;
-          color:#34495e;
+          color: #34495e;
         }
-        span{
+        span {
           display: block;
           margin: 4px 0;
         }
-        span.date{
+        span.date {
           float: left;
           width: 125px;
           color: #7f8c8d;
         }
-        span.title{
+        span.title {
           margin-left: 130px;
           color: #42b983;
           cursor: pointer;

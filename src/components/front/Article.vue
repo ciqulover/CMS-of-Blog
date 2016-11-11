@@ -19,17 +19,17 @@
   import MyFooter     from './MyFooter.vue'
   export default{
     watch: {
-      '$route': ['fetchData','highlight']
+      '$route': ['fetchData', 'highlight']
     },
     methods: {
       fetchData(){
         this.$store.dispatch('getArticle', this.$route.query.id)
       },
       highlight(){
-        setTimeout( ()=> {
+        setTimeout(()=> {
           hljs.initHighlighting.called = false
           hljs.initHighlighting()
-        },0)
+        }, 0)
       }
     },
     created(){
@@ -44,17 +44,19 @@
         return state.article
       }
     }),
-    components: {MyHeader,MyFooter}
+    components: {MyHeader, MyFooter}
   }
 </script>
 
 <style lang="sass" rel="stylesheet/scss">
   @import "../../style/variables";
-  .wrap{
+
+  .wrap {
     min-height: 100%;
     position: relative;
   }
-  section.article{
+
+  section.article {
     line-height: 1.6;
     padding-bottom: 160px;
     article {

@@ -9,21 +9,21 @@
   </footer>
 </template>
 <style lang="sass" rel="stylesheet/scss" scoped>
-  footer{
+  footer {
     position: absolute;
     bottom: 0;
-    div{
+    div {
       text-align: center;
       color: #aaa;
       font-weight: 100;
     }
-    div.copyright{
+    div.copyright {
       font-size: 12px;
       height: 40px;
       padding-top: 26px;
-      border-top:1px solid #ddd;
+      border-top: 1px solid #ddd;
     }
-    div.login{
+    div.login {
       font-size: 14px;
       margin-bottom: 20px;
       cursor: pointer;

@@ -14,7 +14,6 @@ import Links    from '../components/back/Links.vue'
 import Account  from '../components/back/Account.vue'
 
 
-
 export default new Router({
   mode: 'history',
   routes: [

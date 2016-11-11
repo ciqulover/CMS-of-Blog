@@ -11,8 +11,8 @@ export default {
   LOADING_TOGGLE: (state, isLoading)=> {
     state.isLoading = isLoading
   },
-  TOASTING_TOGGLE:(state,isToasting)=>{
-      state.isToasting=isToasting
+  TOASTING_TOGGLE: (state, isToasting)=> {
+    state.isToasting = isToasting
   },
   SET_USER: (state, user)=> {
     state.user = user
@@ -37,12 +37,12 @@ export default {
   REMOVE_LINK(state, index){
     state.links.splice(index, 1)
   },
-  SET_TOAST(state,payload){
-    state.toast.info=payload.info
-    state.toast.btnNum=payload.btnNum
-    state.toast.promise=new Promise((resolve,reject)=>{
-      state.toast.toastResolve=resolve
-      state.toast.toastReject=reject
+  SET_TOAST(state, payload){
+    state.toast.info = payload.info
+    state.toast.btnNum = payload.btnNum
+    state.toast.promise = new Promise((resolve, reject)=> {
+      state.toast.toastResolve = resolve
+      state.toast.toastReject = reject
     })
   }
 }

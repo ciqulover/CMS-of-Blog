@@ -46,6 +46,7 @@
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>
   @import "../../style/mixins.scss";
+
   $headerHeight: 50px;
   header.statusBar {
     height: $headerHeight;
