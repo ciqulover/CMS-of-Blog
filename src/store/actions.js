@@ -56,7 +56,8 @@ export default {
       .then(()=>Vue.http.post('/api/deleteArticle', {id}))
       .finally(()=>commit('TOASTING_TOGGLE', false))
       .then(()=>dispatch('getArticles'))
-      .catch(()=> {})
+      .catch(()=> {
+      })
   },
   getLinks({commit}) {
     return Vue.http.post('/api/getLinks')

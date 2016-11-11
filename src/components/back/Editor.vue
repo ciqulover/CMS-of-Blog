@@ -47,10 +47,10 @@
           .catch(err=> console.log(err))
       },
       highlight(){
-        setTimeout( ()=> {
+        setTimeout(()=> {
           hljs.initHighlighting.called = false
           hljs.initHighlighting()
-        },0)
+        }, 0)
       }
     },
     updated(){

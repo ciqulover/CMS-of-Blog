@@ -45,7 +45,7 @@
     created(){
       this.$store.dispatch('getLinks')
     },
-    computed:mapState(['links']),
+    computed: mapState(['links']),
 
     methods: Object.assign(
       {
@@ -79,15 +79,15 @@
       padding-top: 100px;
       width: 500px;
       position: relative;
-      input{
+      input {
         box-sizing: border-box;
-        height:30px;
+        height: 30px;
         padding: 6px;
         transition: all 0.2s;
         border-left: 0 solid $green1;
       }
-      input:focus{
-         border-left: 6px solid $green1;
+      input:focus {
+        border-left: 6px solid $green1;
       }
       tr {
         height: 50px;
@@ -116,8 +116,8 @@
                 width: 10px;
                 display: inline-block;
               }
-              &:hover{
-                color:$green1
+              &:hover {
+                color: $green1
               }
             }
           }

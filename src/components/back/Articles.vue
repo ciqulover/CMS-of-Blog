@@ -43,7 +43,7 @@
         this.$router.push('/console/editor?id=' + id)
       },
       deleteArticle(id){
-        this.$store.dispatch('deleteArticle',id).then(()=>{
+        this.$store.dispatch('deleteArticle', id).then(()=> {
         })
       }
     }

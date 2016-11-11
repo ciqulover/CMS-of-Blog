@@ -27,11 +27,11 @@
     },
     methods: {
       savePwd(){
-        if(this.pwd===this.pwdRepeat){
-          this.$store.dispatch('savePwd',this.pwd)
+        if (this.pwd === this.pwdRepeat) {
+          this.$store.dispatch('savePwd', this.pwd)
         }
       }
-    },
+    }
   }
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>

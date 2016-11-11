@@ -41,8 +41,8 @@
     },
     methods: {
       doLogin(){
-        if(!this.name.length||!this.pwd.length){
-          this.info='请输入正常的用户名和密码'
+        if (!this.name.length || !this.pwd.length) {
+          this.info = '请输入正常的用户名和密码'
           return
         }
         const loginInfo = {
@@ -60,12 +60,12 @@
         )
       },
       clearInfo(){
-        this.info=''
+        this.info = ''
       }
     },
-    watch:{
-      name:'clearInfo',
-      pwd:'clearInfo'
+    watch: {
+      name: 'clearInfo',
+      pwd: 'clearInfo'
     }
 
   }

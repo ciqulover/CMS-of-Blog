@@ -1,16 +1,15 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
-const favicon=require('serve-favicon')
+const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const db = require('./db')
-
-// const createBundleRenderer = require('vue-server-renderer').createBundleRenderer
-
 const resolve = file=>path.resolve(__dirname, file)
 const api = require('./api')
 const app = express()
+
+// const createBundleRenderer = require('vue-server-renderer').createBundleRenderer
 
 app.set('port', (process.env.port || 3000))
 app.use(favicon(resolve('../dist/favicon.ico')))
