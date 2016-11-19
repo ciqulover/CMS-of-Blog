@@ -32,20 +32,19 @@
   </div>
 </template>
 <script>
-  import {mapState}   from 'vuex'
   import {get}        from '../../assets/js/cookieUtil'
   import StatusBar    from './StatusBar.vue'
+  import {mapState, mapMutations}   from 'vuex'
+
   export default{
     created(){
-      const userName = get('user')
-      if (!userName) {
-        this.$router.push('/')
-      } else if (userName && !this.user.name) {
-        this.$store.commit('SET_USER', {name: userName, pwd: ''})
-      }
+      const user = get('user')
+      if (!user) this.$router.push('/')
+      if (user && !this.user.name) this.SET_USER({name: user, pwd: ''})
     },
     components: {StatusBar},
-    computed: mapState(['user'])
+    computed: mapState(['user']),
+    methods: mapMutations(['SET_USER'])
   }
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>

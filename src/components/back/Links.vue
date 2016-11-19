@@ -40,29 +40,17 @@
 </template>
 
 <script>
-  import {mapMutations, mapState} from 'vuex'
+  import {mapMutations, mapActions, mapState} from 'vuex'
   export default{
     created(){
-      this.$store.dispatch('getLinks')
+      this.getLinks()
     },
     computed: mapState(['links']),
-
-    methods: Object.assign(
-      {
-        saveLinks(){
-          this.$store.dispatch('saveLinks')
-        }
-      },
-      mapMutations([
-        'UPDATE_LINK_NAME',
-        'UPDATE_LINK_HREF',
-        'ADD_NEW_LINK',
-        'REMOVE_LINK'
-      ])
-    )
+    methods: {
+      ...mapActions(['saveLinks', 'getLinks']),
+      ...mapMutations(['UPDATE_LINK_NAME', 'UPDATE_LINK_HREF', 'ADD_NEW_LINK', 'REMOVE_LINK'])
+    }
   }
-
-
 </script>
 
 <style lang="sass" rel="stylesheet/scss" scoped>

@@ -17,9 +17,13 @@
   import hljs         from '../../assets/js/highlight.pack'
   import MyHeader     from './MyHeader.vue'
   import MyFooter     from './MyFooter.vue'
+
   export default{
-    watch: {
-      '$route': ['fetchData', 'highlight']
+    created(){
+      this.fetchData()
+    },
+    updated(){
+      this.highlight()
     },
     methods: {
       fetchData(){
@@ -32,19 +36,16 @@
         }, 0)
       }
     },
-    created(){
-      this.fetchData()
-    },
-    updated(){
-      this.highlight()
-    },
     computed: mapState({
       article: state=> {
         state.article.content = marked(state.article.content || '')
         return state.article
       }
     }),
-    components: {MyHeader, MyFooter}
+    components: {MyHeader, MyFooter},
+    watch: {
+      '$route': ['fetchData', 'highlight']
+    }
   }
 </script>
 

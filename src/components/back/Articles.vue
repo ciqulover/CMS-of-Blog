@@ -1,17 +1,17 @@
 <template>
   <section class="articles">
-    <router-link :to="{path:'/console/editor'}"
+    <router-link :to="{name:'editor'}"
                  tag="button">新增文章
     </router-link>
     <table>
       <tbody>
       <tr>
-        <th @click="sort('title')">标题</th>
-        <th @click="sort('date')">日期</th>
+        <th>标题</th>
+        <th>日期</th>
         <th>选项</th>
       </tr>
       <tr v-for="(article,index) in articles">
-        <router-link :to="{path:'/article',query:{id:article._id}}"
+        <router-link :to="{name:'article',query:{id:article._id}}"
                      tag="td">
           {{article.title}}
         </router-link>
@@ -19,11 +19,12 @@
           {{article.date | toDate}}
         </td>
         <td>
-          <i class="fa fa-pencil-square-o"
-             @click="editArticle(article._id)">
-          </i>
+          <router-link class="fa fa-pencil-square-o"
+                       :to="{name:'editor',query:{id:article._id}}"
+                       tag="i">
+          </router-link>
           <i class="fa fa-trash"
-             @click="deleteArticle(article._id,index)">
+             @click="deleteArticle(article._id)">
           </i>
         </td>
       </tr>
@@ -32,25 +33,16 @@
   </section>
 </template>
 <script>
-  import {mapState, mapGetters} from 'vuex'
+  import {mapState, mapActions} from 'vuex'
   export default{
     created(){
-      this.$store.dispatch('getArticles')
+      this.getArticles()
     },
     computed: mapState(['articles']),
-    methods: {
-      editArticle(id){
-        this.$router.push('/console/editor?id=' + id)
-      },
-      deleteArticle(id){
-        this.$store.dispatch('deleteArticle', id).then(()=> {
-        })
-      }
-    }
+    methods: mapActions(['getArticles', 'deleteArticle'])
   }
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>
-  @import "../../style/variables.scss";
   @import "../../style/mixins.scss";
 
   section.articles {

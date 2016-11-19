@@ -15,7 +15,6 @@
   </div>
 </template>
 <style lang="sass" rel="stylesheet/scss" scoped>
-  @import "../../style/mixins.scss";
 
   $offset: 187;
   $duration: 1.4s;
