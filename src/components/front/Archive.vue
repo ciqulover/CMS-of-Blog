@@ -25,19 +25,20 @@
   </main>
 </template>
 <script>
-  import {mapState, mapGetters} from 'vuex'
-  import MyHeader               from './MyHeader.vue'
-  import MyFooter               from './MyFooter.vue'
-  import Spinner                from '../share/Spinner.vue'
+  import {mapState, mapGetters,mapActions} from 'vuex'
+  import MyHeader   from './MyHeader.vue'
+  import MyFooter   from './MyFooter.vue'
+  import Spinner    from '../share/Spinner.vue'
+
   export default{
     created(){
-      this.$store.dispatch('getArticles')
+      this.getArticles()
     },
-    computed: Object.assign(
-      {},
-      mapState(['articles']),
-      mapGetters(['archive'])
-    ),
+    computed: {
+      ...mapState(['articles']),
+      ...mapGetters(['archive'])
+    },
+    methods:{...mapActions(['getArticles'])},
     components: {Spinner, MyHeader, MyFooter}
   }
 </script>

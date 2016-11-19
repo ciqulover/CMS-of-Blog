@@ -30,7 +30,9 @@
   </section>
 </template>
 <script>
-  import {get, set, unset}  from '../../assets/js/cookieUtil'
+  import {mapActions} from 'vuex'
+  import {get, set}  from '../../assets/js/cookieUtil'
+
   export default{
     data(){
       return {
@@ -41,73 +43,62 @@
     },
     methods: {
       doLogin(){
-        if (!this.name.length || !this.pwd.length) {
-          this.info = '请输入正常的用户名和密码'
-          return
-        }
-        const loginInfo = {
-          name: this.name,
-          pwd: this.pwd
-        }
-        this.$store.dispatch('login', loginInfo).then(
-          ()=> {
+        if (!this.name.length) return this.info = '请输入正常的用户名'
+        if (!this.pwd.length) return this.info = '请输入正常的密码'
+
+        this.login({name: this.name, pwd: this.pwd})
+          .then(() => {
             const date = new Date(Date.now() + 60000 * 30)
-            const hostName = location.hostname
-            set('user', this.name, date, '/', hostName)
+            set('user', this.name, date, '/', location.hostname)
             this.$router.push({path: '/console'})
-          },
-          msg=>this.info = msg
-        )
+          })
+          .catch(msg => this.info = msg)
       },
       clearInfo(){
         this.info = ''
-      }
+      },
+      ...mapActions(['login'])
     },
     watch: {
       name: 'clearInfo',
-      pwd: 'clearInfo'
+      pwd:  'clearInfo'
     }
-
   }
 </script>
 <style lang="sass" rel="stylesheet/scss">
   @import "../../style/variables";
 
   section.login {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    position: relative;
+    height: 100%;
     min-height: 500px;
     .form {
       width: 500px;
       height: 400px;
-      margin: 100px auto;
+      margin: 0 auto;
       position: absolute;
-      top: 100px;
+      top: 50%;
       left: 50%;
-      transform: translate(-50%, 0);
+      transform: translate(-50%, -50%);
       .icon i {
         transition: all 4s;
         &:hover {
           transform: rotate(1440deg);
         }
       }
-      .info {
-        display: block;
-        margin: 10px;
-        font-size: 12px;
-        height: 20px;
-        color: $black3;
-      }
-      .input:hover {
-        color: $green2;
-      }
       > p {
         height: 50px;
         text-align: center;
         transition: all 0.4s;
+        &.info {
+          margin: 10px;
+          font-size: 12px;
+          height: 20px;
+          color: $black3;
+        }
+        &.input:hover {
+          color: $green2;
+        }
         input {
           transition: all 0.4s;
           width: 200px;
@@ -124,7 +115,6 @@
           border-radius: 4px;
           width: 60px;
           height: 30px;
-          cursor: pointer;
           &:hover {
             background-color: $green1;
             color: #FFF;

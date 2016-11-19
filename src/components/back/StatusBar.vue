@@ -1,5 +1,4 @@
 <template>
-
   <header class="statusBar">
     <router-link :to="{path:'/archive'}"
                  tag="button"
@@ -18,30 +17,27 @@
   </header>
 </template>
 <script>
-  import {unset}    from '../../assets/js/cookieUtil'
-  import {mapState} from 'vuex'
+  import {unset} from '../../assets/js/cookieUtil'
+  import {mapState,mapMutations} from 'vuex'
+
   export default{
     methods: {
       logout() {
         unset('user', '/', location.hostname)
-        this.$store.commit('SET_USER', {name: '', pwd: ''})
+        this.SET_USER({name: '', pwd: ''})
         this.$router.push('/')
-      }
-    },
-    computed: Object.assign({
-        time(){
-          let hours = new Date().getHours()
-          if (hours > 5 && hours < 12) {
-            return '早上'
-          } else if (hours > 11 && hours < 19) {
-            return '下午'
-          } else {
-            return '晚上'
-          }
-        }
       },
-      mapState(['user'])
-    )
+      ...mapMutations(['SET_USER'])
+    },
+    computed: {
+      time(){
+        const hours = new Date().getHours()
+        if (hours > 5 && hours < 12)  return '早上'
+        if (hours > 11 && hours < 19) return '下午'
+        return '晚上'
+      },
+      ...mapState(['user'])
+    }
   }
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>

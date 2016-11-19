@@ -16,15 +16,16 @@
     </div>
     <div class="panel">
       <button class="saveArticle"
-              @click="saveArticle">保存
+              @click="save">保存
       </button>
     </div>
   </section>
 </template>
 <script>
-  import {mapState} from 'vuex'
+  import {mapState, mapActions, mapMutations} from 'vuex'
   import marked     from '../../assets/js/marked.min'
   import hljs       from '../../assets/js/highlight.pack'
+
   export default{
     data(){
       return {
@@ -34,27 +35,26 @@
     },
     created(){
       const id = this.$route.query.id
-      if (id) {
-        this.$store.dispatch('getArticle', id)
-      } else {
-        this.$store.commit('SET_ARTICLE', {date: new Date()})
-      }
-    },
-    methods: {
-      saveArticle(){
-        this.$store.dispatch('saveArticle')
-          .then(()=>this.$router.push({name: 'articles'}))
-          .catch(err=> console.log(err))
-      },
-      highlight(){
-        setTimeout(()=> {
-          hljs.initHighlighting.called = false
-          hljs.initHighlighting()
-        }, 0)
-      }
+      if (id) return this.getArticle(id)
+      this.SET_ARTICLE({date: new Date()})
     },
     updated(){
       this.highlight()
+    },
+    methods: {
+      save(){
+        this.saveArticle()
+          .then(() => this.$router.push({name: 'articles'}))
+          .catch(err => console.log(err))
+      },
+      highlight(){
+        setTimeout(() => {
+          hljs.initHighlighting.called = false
+          hljs.initHighlighting()
+        }, 0)
+      },
+      ...mapActions(['getArticle', 'saveArticle']),
+      ...mapMutations(['SET_ARTICLE'])
     },
     computed: {
       content: {
@@ -79,11 +79,9 @@
         }
       }
     }
-
   }
 </script>
 <style lang="sass" rel="stylesheet/scss">
-  @import "../../style/variables";
   @import "../../style/mixins.scss";
 
   section.editor {

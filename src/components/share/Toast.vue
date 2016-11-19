@@ -19,7 +19,6 @@
   }
 </script>
 <style lang="sass" rel="stylesheet/scss" scoped>
-  @import "../../style/variables.scss";
   @import "../../style/mixins.scss";
 
   .toast{

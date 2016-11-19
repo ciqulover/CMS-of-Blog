@@ -5,13 +5,16 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
-    main:'./src/main.js',
-    setup:'./src/setup.js'
+    main: './src/main.js',
+    setup: './src/setup.js'
   },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: '[name].js'
+  },
+  resolveLoader: {
+    moduleExtensions: ['-loader']
   },
   module: {
     rules: [
@@ -39,14 +42,20 @@ module.exports = {
           name: '[name].[ext]?[hash]'
         }
       },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: "file-loader"
+      }
     ]
   },
   plugins: [
     new ExtractTextPlugin("styles.css"),
     new CopyWebpackPlugin([
-      {from:'./src/assets/img',to:'./'}
+      {from: './src/assets/img', to: './'}
     ])
   ],
   resolve: {
