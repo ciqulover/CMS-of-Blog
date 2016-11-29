@@ -1,8 +1,8 @@
 export default {
-  archive: state=> {
+  archive: state => {
     const articleInYear = {}
     const years = []
-    state.articles.forEach(article=> {
+    state.articles.forEach(article => {
       const time = new Date(article.date)
       const year = time.getFullYear()
       if (!articleInYear[year]) {

@@ -5,7 +5,7 @@ const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const db = require('./db')
-const resolve = file=>path.resolve(__dirname, file)
+const resolve = file => path.resolve(__dirname, file)
 const api = require('./api')
 const app = express()
 
@@ -22,11 +22,11 @@ app.use(api)
 app.post('/api/setup', function (req, res) {
   new db.User(req.body)
     .save()
-    .then(()=> {
+    .then(() => {
       res.status(200).end()
       db.initialized = true
     })
-    .catch(()=>res.status(500).end())
+    .catch(() => res.status(500).end())
 })
 
 app.get('*', function (req, res) {

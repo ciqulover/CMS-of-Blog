@@ -6,24 +6,23 @@ import getters from './getters'
 
 Vue.use(Vuex)
 
-
 const store = new Vuex.Store({
   state: {
     isLoading: false,
     isToasting: false,
     articles: [],
     article: {},
-    user: {name: '', pwd: ""},
+    user: {name: '', pwd: ''},
     links: [],
     toast: {
       promise: null,
       info: '',
       btnNum: 1,
-      toastResolve(){
+      toastResolve () {
       },
-      toastReject(){
+      toastReject () {
       }
-    },
+    }
   },
   getters,
   mutations,

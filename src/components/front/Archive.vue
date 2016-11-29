@@ -25,7 +25,7 @@
   </main>
 </template>
 <script>
-  import {mapState, mapGetters,mapActions} from 'vuex'
+  import {mapState, mapGetters, mapActions} from 'vuex'
   import MyHeader   from './MyHeader.vue'
   import MyFooter   from './MyFooter.vue'
   import Spinner    from '../share/Spinner.vue'
@@ -38,7 +38,7 @@
       ...mapState(['articles']),
       ...mapGetters(['archive'])
     },
-    methods:{...mapActions(['getArticles'])},
+    methods: {...mapActions(['getArticles'])},
     components: {Spinner, MyHeader, MyFooter}
   }
 </script>
