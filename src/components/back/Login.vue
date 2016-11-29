@@ -31,7 +31,7 @@
 </template>
 <script>
   import {mapActions} from 'vuex'
-  import {get, set}  from '../../assets/js/cookieUtil'
+  import {set}  from '../../assets/js/cookieUtil'
 
   export default{
     data(){

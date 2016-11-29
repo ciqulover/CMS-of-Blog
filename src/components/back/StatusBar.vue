@@ -23,7 +23,7 @@
   export default{
     methods: {
       logout() {
-        unset('user', '/', location.hostname)
+        unset('user', '/', window.location.hostname)
         this.SET_USER({name: '', pwd: ''})
         this.$router.push('/')
       },

@@ -6,7 +6,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   entry: {
     main: './src/main.js',
-    setup: './src/setup.js'
+    setup: './src/setup.js',
+    // vendor: [
+    //   'vue',
+    //   'vue-router',
+    //   'vuex'
+    // ]
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -22,6 +27,12 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue',
         options: {
+          preserveWhitespace: false,
+          postcss: [
+            require('autoprefixer')({
+              browsers: ['last 3 versions']
+            })
+          ],
           loaders: {
             sass: ExtractTextPlugin.extract({
               loader: 'css!sass!',
@@ -44,16 +55,16 @@ module.exports = {
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "url-loader?limit=10000&mimetype=application/font-woff"
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: "file-loader"
+        loader: 'file-loader'
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin('styles.css'),
     new CopyWebpackPlugin([
       {from: './src/assets/img', to: './'}
     ])

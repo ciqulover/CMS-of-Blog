@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const db = require('./db')
-const fn = ()=> {}
+const fn = () => {}
 
-router.get('/api/getArticle', (req, res)=> {
+router.get('/api/getArticle', (req, res) => {
   const _id = req.query.id
-  db.Article.findOne({_id}, (err, doc)=> {
+  db.Article.findOne({_id}, (err, doc) => {
     if (err) {
       console.log(err)
     } else if (doc) {
@@ -14,7 +14,7 @@ router.get('/api/getArticle', (req, res)=> {
   })
 })
 
-router.get('/api/getArticles', (req, res)=> {
+router.get('/api/getArticles', (req, res) => {
   db.Article.find(null, 'title date content', (err, doc) => {
     if (err) {
       console.log(err)
@@ -46,7 +46,7 @@ router.post('/api/login', (req, res) => {
   })
 })
 
-router.post('/api/saveArticle', (req, res)=> {
+router.post('/api/saveArticle', (req, res) => {
   const id = req.body._id
   const article = {
     title: req.body.title,
@@ -61,14 +61,13 @@ router.post('/api/saveArticle', (req, res)=> {
   res.status(200).end()
 })
 
-
-router.post('/api/deleteArticle', (req, res)=> {
+router.post('/api/deleteArticle', (req, res) => {
   db.Article.findByIdAndRemove(req.body.id, fn)
   res.status(200).end()
 })
 
 router.post('/api/getLinks', (req, res) => {
-  db.Link.find(null, (err, doc)=> {
+  db.Link.find(null, (err, doc) => {
     if (err) {
       console.log(err)
     } else if (doc) {
@@ -77,16 +76,16 @@ router.post('/api/getLinks', (req, res) => {
   })
 })
 
-router.post('/api/saveLinks', (req, res)=> {
+router.post('/api/saveLinks', (req, res) => {
   const links = req.body || []
   db.Link.remove(null, fn)
-  const promises = links.map(({name, href})=> new db.Link({name, href}).save())
+  const promises = links.map(({name, href}) => new db.Link({name, href}).save())
   Promise.all(promises)
-    .then(()=>res.status(200).end())
-    .catch(()=>res.status(500).end())
+    .then(() => res.status(200).end())
+    .catch(() => res.status(500).end())
 })
 
-router.post('/api/savePwd', (req, res)=> {
+router.post('/api/savePwd', (req, res) => {
   const {name, pwd} = req.body
   db.User.findOneAndUpdate({name}, {pwd}, fn)
   res.status(200).end()
