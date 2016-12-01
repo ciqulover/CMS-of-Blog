@@ -1,7 +1,8 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
+
 html, body {
   height: 100%;
   font-family: $fontGothic;
@@ -11,16 +12,18 @@ html, body {
 a {
   text-decoration: none
 }
-ul,ol,li{
+
+ul, ol, li {
   list-style: none;
 }
 
-button,input,textarea{
+button, input, textarea {
   border: none;
   outline: none;
   font-family: $fontGothic;
   background-color: transparent;
 }
-button{
+
+button {
   cursor: pointer;
 }

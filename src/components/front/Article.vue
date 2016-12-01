@@ -30,14 +30,14 @@
         this.$store.dispatch('getArticle', this.$route.query.id)
       },
       highlight(){
-        setTimeout(()=> {
+        setTimeout(() => {
           hljs.initHighlighting.called = false
           hljs.initHighlighting()
         }, 0)
       }
     },
     computed: mapState({
-      article: state=> {
+      article: state => {
         state.article.content = marked(state.article.content || '')
         return state.article
       }

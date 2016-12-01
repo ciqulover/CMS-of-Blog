@@ -1,14 +1,15 @@
-import Vue from 'vue'
-import VueResource from 'vue-resource'
-import {mapState} from 'vuex'
+import Vue          from 'vue'
+import VueResource  from 'vue-resource'
+import {mapState}   from 'vuex'
 
-import Spinner from './components/share/Spinner.vue'
-import Toast from './components/share/Toast.vue'
-import MyCanvas from './components/share/MyCanvas.vue'
-import StyleInjector from './components/StyleInjector.vue'
+import Spinner      from './components/share/Spinner.vue'
+import Toast        from './components/share/Toast.vue'
+import MyCanvas     from './components/share/MyCanvas.vue'
 
-import store from './store'
-import router from './router'
+import store        from './store'
+import router       from './router'
+
+import './style/index.scss'
 
 Vue.use(VueResource)
 
@@ -22,6 +23,6 @@ Vue.filter('toDate', date => {
 new Vue({
   router,
   store,
-  components: {Spinner, Toast, MyCanvas, StyleInjector},
+  components: {Spinner, Toast, MyCanvas},
   computed: mapState(['isLoading', 'isToasting'])
 }).$mount('#CMS2')

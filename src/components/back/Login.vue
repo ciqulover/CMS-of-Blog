@@ -49,7 +49,7 @@
         this.login({name: this.name, pwd: this.pwd})
           .then(() => {
             const date = new Date(Date.now() + 60000 * 30)
-            set('user', this.name, date, '/', location.hostname)
+            set('user', this.name, date, '/', window.location.hostname)
             this.$router.push({path: '/console'})
           })
           .catch(msg => this.info = msg)
@@ -61,17 +61,14 @@
     },
     watch: {
       name: 'clearInfo',
-      pwd:  'clearInfo'
+      pwd: 'clearInfo'
     }
   }
 </script>
-<style lang="sass" rel="stylesheet/scss">
+<style lang="sass" rel="stylesheet/scss" scoped>
   @import "../../style/variables";
 
   section.login {
-    position: relative;
-    height: 100%;
-    min-height: 500px;
     .form {
       width: 500px;
       height: 400px;

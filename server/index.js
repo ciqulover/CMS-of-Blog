@@ -32,6 +32,7 @@ app.post('/api/setup', function (req, res) {
 app.get('*', function (req, res) {
   const fileName = db.initialized ? 'index.html' : 'setup.html'
   const html = fs.readFileSync(resolve('../' + fileName), 'utf-8')
+  // const html = fs.readFileSync(resolve('../setup.html'), 'utf-8')
   res.send(html)
 })
 

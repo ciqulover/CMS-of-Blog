@@ -2,11 +2,13 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const extractCSSFromVue = new ExtractTextPlugin('styles.css')
+const extractCSSFromSASS = new ExtractTextPlugin('index.css')
 
 module.exports = {
   entry: {
     main: './src/main.js',
-    setup: './src/setup.js',
+    setup: './src/setup.js'
     // vendor: [
     //   'vue',
     //   'vue-router',
@@ -34,12 +36,16 @@ module.exports = {
             })
           ],
           loaders: {
-            sass: ExtractTextPlugin.extract({
+            sass: extractCSSFromVue.extract({
               loader: 'css!sass!',
               fallbackLoader: 'vue-style-loader'
             })
           }
         }
+      },
+      {
+        test: /\.scss$/,
+        loader: extractCSSFromSASS.extract(['css', 'sass'])
       },
       {
         test: /\.js$/,
@@ -64,7 +70,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('styles.css'),
+    extractCSSFromVue,
+    extractCSSFromSASS,
     new CopyWebpackPlugin([
       {from: './src/assets/img', to: './'}
     ])
