@@ -1,5 +1,10 @@
 [
   {
+    "type": "User",
+    "name": "visitor",
+    "pwd": "000000"
+  },
+  {
     "type": "Article",
     "title": "Hello World",
     "date": "2016/10/21",

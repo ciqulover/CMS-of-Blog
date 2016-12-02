@@ -16,6 +16,16 @@ const doToast = (state, commit, payload) => {
   return state.toast.promise
 }
 
+const checkAuthority = (state, commit) => {
+  if (state.user.name === 'visitor') {
+    doToast(state, commit, {info: '权限不够', btnNum: 1})
+      .finally(() => commit('TOASTING_TOGGLE', false))
+    return false
+  } else {
+    return true
+  }
+}
+
 Promise.prototype.finally = function (callback) {
   return this.then(
     value => Promise.resolve(callback()).then(() => value),
@@ -44,6 +54,7 @@ export default {
       })
   },
   saveArticle ({state, commit}) {
+    if (!checkAuthority(state, commit)) return Promise.reject('保存权限不够')
     return Vue.http.post('/api/saveArticle', state.article)
       .then(
         () => doToast(state, commit, {info: '保存成功,是否返回?', btnNum: 2}),
@@ -52,6 +63,7 @@ export default {
       .finally(() => commit('TOASTING_TOGGLE', false))
   },
   deleteArticle ({state, commit, dispatch}, id) {
+    if (!checkAuthority(state, commit)) return Promise.reject('保存权限不够')
     return doToast(state, commit, {info: '确定要删除吗?', btnNum: 2})
       .then(() => Vue.http.post('/api/deleteArticle', {id}))
       .finally(() => commit('TOASTING_TOGGLE', false))
@@ -66,6 +78,7 @@ export default {
       })
   },
   saveLinks ({state, commit}) {
+    if (!checkAuthority(state, commit)) return Promise.reject('保存权限不够')
     return Vue.http.post('/api/saveLinks', state.links)
       .then(
         () => doToast(state, commit, {info: '保存成功', btnNum: 1}),
@@ -74,6 +87,7 @@ export default {
       .finally(() => commit('TOASTING_TOGGLE', false))
   },
   savePwd ({state, commit}, pwd) {
+    if (!checkAuthority(state, commit)) return Promise.reject('保存权限不够')
     return Vue.http.post('/api/savePwd', {name: state.user.name, pwd})
       .then(
         () => doToast(state, commit, {info: '保存成功', btnNum: 1}),
