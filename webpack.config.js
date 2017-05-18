@@ -85,8 +85,11 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     proxy: {
-      '/': {
-        target: 'http://localhost:3000/'
+      '/api/**': {
+        target: 'http://localhost:3000/',
+        pathRewrite: {
+                    "^/api": ""
+                }
       }
     }
   },
