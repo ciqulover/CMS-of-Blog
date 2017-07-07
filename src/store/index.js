@@ -1,31 +1,14 @@
-import Vue        from 'vue'
-import Vuex       from 'vuex'
-import actions    from './actions'
-import mutations  from './mutations'
-import getters    from './getters'
+import Vue from 'vue'
+import Vuex from 'vuex'
+import hello from './modules/hello'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
-  state: {
-    isLoading: false,
-    isToasting: false,
-    articles: [],
-    article: {},
-    user: {name: '', pwd: ''},
-    links: [],
-    toast: {
-      promise: null,
-      info: '',
-      btnNum: 1,
-      toastResolve () {
-      },
-      toastReject () {
-      }
-    }
+const DEBUG = process.env.NODE_ENV === 'development'
+
+export default new Vuex.Store({
+  modules: {
+    h:hello
   },
-  getters,
-  mutations,
-  actions
+  strict: DEBUG
 })
-export default store
