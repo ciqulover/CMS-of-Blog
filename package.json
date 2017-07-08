@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "theme": "et"
   },
   "dependencies": {
     "vue": "^2.2.2",
@@ -34,6 +35,9 @@
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
     "webpack-bundle-analyzer": "^2.2.1",
+    "element-theme": "^0.2.0",
+    "element-theme-default": "^1.0.2",
+    "element-ui": "^1.0.2",
     "node-sass": "^3.13.0",
     "sass-loader": "^4.0.2",
     "semver": "^5.3.0",

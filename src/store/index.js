@@ -8,7 +8,7 @@ const DEBUG = process.env.NODE_ENV === 'development'
 
 export default new Vuex.Store({
   modules: {
-    h:hello
+    hello
   },
   strict: DEBUG
 })
